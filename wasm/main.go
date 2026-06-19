@@ -4,12 +4,19 @@
 package main
 
 import (
-	"wasm/ui"
+	"wasm/app"
 )
 
-var UI = ui.New()
+var App = app.Context{
+	Header: &app.Header{
+		Title:       "Test Application",
+		Description: "A Test APlication to demostrate, how to use the wasm ui builder",
+	},
+}
 
-func main() {}
+func main() {
+	App.Run()
+}
 
 // func main() {
 // 	fmt.Println("first program")
