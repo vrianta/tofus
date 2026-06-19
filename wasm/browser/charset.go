@@ -11,15 +11,15 @@ const (
 
 // var Charset = uTF8
 
-func (c *Charset) ToUTF8() Charset {
+func (Charset) ToUTF8() Charset {
 	return uTF8
 }
 
-func (c *Charset) ToUTF16() Charset {
+func (Charset) ToUTF16() Charset {
 	return uTF16
 }
 
-func (c *Charset) ToISO88591() Charset {
+func (Charset) ToISO88591() Charset {
 	return iSO8859
 }
 

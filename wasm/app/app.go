@@ -10,21 +10,19 @@ type Context struct {
 	// root     js.Value
 
 	Header *Header
-	// Body   *Body
+	Body   *Body
 	// Footer *Footer
 }
 
 func (a *Context) Run() {
-	a.document = js.Global().Get("document")
 
 	if a.Header != nil {
-		a.Header.init(js.Global().Get("document"))
-		a.Header.Render()
+		a.Header.render()
 	}
 
-	// if a.Body != nil {
-	// 	a.Body.Render()
-	// }
+	if a.Body != nil {
+		a.Body.render()
+	}
 
 	// if a.Footer != nil {
 	// 	a.Footer.Render()
