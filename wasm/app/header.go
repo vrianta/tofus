@@ -4,8 +4,8 @@
 package app
 
 import (
-	"wasm/browser"
-	"wasm/internal/js"
+	"github.com/vrianta/tofus/wasm/browser"
+	"github.com/vrianta/tofus/wasm/internal/js"
 )
 
 type Header struct {

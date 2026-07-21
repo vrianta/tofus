@@ -11,7 +11,7 @@ type displays struct {
 	None        Display
 }
 
-var Displays = displays{
+var DisplaysType = displays{
 	Block:       "block",
 	Inline:      "inline",
 	InlineBlock: "inline-block",

@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+##### Description ####
+# Setup script for creating a new WASM project structure
+######################
 set -e
 
 PROJECT_NAME="${1:-wasnui}"

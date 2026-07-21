@@ -4,8 +4,8 @@
 package app
 
 import (
-	"wasm/internal/js"
-	"wasm/style"
+	"github.com/vrianta/tofus/wasm/internal/js"
+	"github.com/vrianta/tofus/wasm/style"
 )
 
 type Body struct {

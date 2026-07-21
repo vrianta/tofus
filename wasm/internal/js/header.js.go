@@ -5,7 +5,8 @@ package js
 
 import (
 	"strings"
-	"wasm/browser"
+
+	"github.com/vrianta/tofus/wasm/browser"
 )
 
 func SetTitle(title string) {

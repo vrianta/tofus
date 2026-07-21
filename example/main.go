@@ -4,8 +4,8 @@
 package main
 
 import (
-	"wasm/app"
-	"wasm/style"
+	"github.com/vrianta/tofus/wasm/app"
+	"github.com/vrianta/tofus/wasm/style"
 )
 
 var App = app.Context{
@@ -20,7 +20,7 @@ var App = app.Context{
 			Width:           style.Sizes.Percent(100),
 			Height:          style.Sizes.Vh(100),
 			BackgroundColor: style.Colors.Hex("#150d0d"),
-			Display:         style.Displays.Block,
+			Display:         style.DisplaysType.Block,
 			Padding:         style.EdgeInsets{}.SetAll(style.Sizes.Px(20)),
 		},
 	},
