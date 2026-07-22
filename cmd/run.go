@@ -46,6 +46,10 @@ func Run() {
 
 	var buf bytes.Buffer
 
+	wd, _ := os.Getwd()
+	os.Chdir(runDir)
+	defer os.Chdir(wd)
+
 	gulog.Debug("Routes we got:\n- %s", strings.Join(routes, "\n- "))
 
 	for _, route := range routes {
@@ -95,6 +99,7 @@ func Run() {
 		gulog.Debug("Created Route for %s", route+"/")
 	}
 	gulog.Info("Startinng the server http://localhost:8080")
+
 	// start the http server
 	http.ListenAndServe(":8080", nil)
 
