@@ -4,6 +4,7 @@
 package main
 
 import (
+	"github.com/vrianta/tofus/ui"
 	"github.com/vrianta/tofus/ui/style"
 	"github.com/vrianta/tofus/wasm/app"
 )
@@ -14,8 +15,8 @@ var App = app.Context{
 		Description: "A Test APlication to demostrate, how to use the wasm ui builder",
 	},
 	Body: &app.Body{
-		Id: "body",
-
+		Id:       "body",
+		Children: []ui.Widget{},
 		Style: style.Context{
 			Width:           style.Sizes.Percent(100),
 			Height:          style.Sizes.Vh(100),

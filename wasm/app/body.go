@@ -4,6 +4,7 @@
 package app
 
 import (
+	"github.com/vrianta/tofus/ui"
 	"github.com/vrianta/tofus/ui/dom"
 	"github.com/vrianta/tofus/ui/style"
 )
@@ -11,7 +12,7 @@ import (
 type Body struct {
 	Style    style.Context
 	Id       string
-	Children []Widget
+	Children []ui.Widget
 }
 
 func (b *Body) render() {
@@ -25,6 +26,6 @@ func (b *Body) render() {
 	body.SetStyle(b.Style.String())
 
 	for _, child := range b.Children {
-		child.render()
+		child.Render()
 	}
 }

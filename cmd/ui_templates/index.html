@@ -11,7 +11,7 @@ test wams
         <script src="/wasm_exec.js"></script>
         <script>
             const go = new Go();
-            WebAssembly.instantiateStreaming(fetch("/main.wasm"), go.importObject).then((result) => {
+            WebAssembly.instantiateStreaming(fetch("{{ .wasm_url }}"), go.importObject).then((result) => {
                 go.run(result.instance);
             });
         </script>

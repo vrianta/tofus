@@ -1,5 +1,5 @@
-package app
+package ui
 
 type Widget interface {
-	render()
+	Render()
 }

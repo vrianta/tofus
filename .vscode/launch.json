@@ -14,6 +14,17 @@
             "args": [
                 "--version"
             ]
+        },
+        {
+            "name": "Launch Build Debug",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}",
+            "env": {},
+            "args": [
+                "--build"
+            ]
         }
     ]
 }

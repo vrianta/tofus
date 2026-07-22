@@ -11,6 +11,7 @@ var Version = "v1.0"
 var Args = gonfig.New[struct {
 	Build   bool `arg:"build" default:"false"`
 	Version bool `arg:"version" default:"false"`
+	Run     bool `arg:"run" default:"false"`
 }](true)
 
 func main() {
@@ -19,6 +20,9 @@ func main() {
 	}
 	if Args.Build {
 		cmd.Build()
+	}
+	if Args.Run {
+		cmd.Run()
 	}
 
 	// http.ListenAndServe(`:8080`, http.FileServer(http.Dir(`./wasm/`)))

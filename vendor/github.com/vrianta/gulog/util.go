@@ -28,7 +28,7 @@ func init() {
 }
 
 func startLogging() {
-	Info("gulog: Service has been started, make. \nIf you are using os.exit() or any unprecidented exit in the system please use gulog.Wait() in the main end")
+	// Info("gulog: Service has been started, make. \nIf you are using os.exit() or any unprecidented exit in the system please use gulog.Wait() in the main end")
 	waitG.Done()
 	for {
 		msg := <-massages
