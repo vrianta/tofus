@@ -27,4 +27,6 @@ func (a *Context) Run() {
 	// if a.Footer != nil {
 	// 	a.Footer.Render()
 	// }
+
+	select {}
 }

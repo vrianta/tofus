@@ -61,7 +61,9 @@ func createBuildFolders(src, dst string) error {
 	for _, entry := range entries {
 		if !entry.IsDir() {
 
-			BuildWasm(src, dst)
+			if err := BuildWasm(src, dst); err != nil {
+				gulog.Error("Failed to build the wasm of %s\nError: %s", src, err.Error())
+			}
 			continue
 		}
 
@@ -114,7 +116,3 @@ func BuildWasm(src, dst string) error {
 
 	return cmd.Run()
 }
-
-// func createJsFiles() {
-
-// }

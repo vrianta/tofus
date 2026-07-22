@@ -13,10 +13,11 @@ type Context struct {
 	MinHeight Size
 	MaxWidth  Size
 	MaxHeight Size
+	BoxSizing BoxSizing
 
 	// Spacing
-	Padding edgeInsets
-	Margin  edgeInsets
+	Padding EdgeInset
+	Margin  EdgeInset
 
 	// Colors
 	BackgroundColor Color
@@ -25,6 +26,7 @@ type Context struct {
 	// Border
 	Border       Border
 	BorderRadius BorderRadius
+	Outline      Outline
 
 	// Position
 	Position Position
@@ -92,6 +94,7 @@ func (c Context) String() string {
 	add("min-height", c.MinHeight.String())
 	add("max-width", c.MaxWidth.String())
 	add("max-height", c.MaxHeight.String())
+	add("box-sizing", string(c.BoxSizing))
 
 	// Spacing
 	add("padding", c.Padding.String())
@@ -104,6 +107,7 @@ func (c Context) String() string {
 	// Border
 	add("border", c.Border.String())
 	add("border-radius", c.BorderRadius.String())
+	add("outline", c.Outline.String())
 
 	// Position
 	add("position", string(c.Position))

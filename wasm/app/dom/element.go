@@ -7,6 +7,7 @@ import "syscall/js"
 
 type Element struct {
 	js.Value
+	callbacks []js.Func
 }
 
 func CreateElement(tag string) Element {
@@ -47,4 +48,44 @@ func (e *Element) OnClick(fn func()) {
 	})
 
 	e.Call("addEventListener", "click", callback)
+}
+
+func (e *Element) SetAttribute(name, value string) {
+	e.Call("setAttribute", name, value)
+}
+
+func (e *Element) RemoveAttribute(name string) {
+	e.Call("removeAttribute", name)
+}
+
+func (e *Element) GetAttribute(name string) string {
+	v := e.Call("getAttribute", name)
+	if v.IsNull() || v.IsUndefined() {
+		return ""
+	}
+	return v.String()
+}
+
+func (e *Element) HasAttribute(name string) bool {
+	return e.Call("hasAttribute", name).Bool()
+}
+
+func (e *Element) OnInput(fn func(string)) {
+	cb := js.FuncOf(func(this js.Value, args []js.Value) any {
+		fn(this.Get("value").String())
+		return nil
+	})
+
+	e.callbacks = append(e.callbacks, cb)
+	e.Call("addEventListener", "input", cb)
+}
+
+func (e *Element) OnChange(fn func(string)) {
+	cb := js.FuncOf(func(this js.Value, args []js.Value) any {
+		fn(this.Get("value").String())
+		return nil
+	})
+
+	e.callbacks = append(e.callbacks, cb)
+	e.Call("addEventListener", "change", cb)
 }

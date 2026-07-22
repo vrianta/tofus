@@ -32,7 +32,7 @@ var header = layout.Header{
 var loginButton = &widgets.Button{
 	Text: "Login",
 	OnClick: func() {
-		println("Clicked")
+		app.Navigate("/login/")
 	},
 	Style: style.Context{
 		Display:        style.DisplaysType.InlineFlex,

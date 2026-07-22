@@ -15,6 +15,14 @@ type BorderRadius struct {
 	BottomRight Size
 }
 
+func (b Border) Solid(width Size, color Color) Border {
+	return Border{
+		Width: width,
+		Style: "solid",
+		Color: color,
+	}
+}
+
 func (b BorderRadius) SetAll(s Size) BorderRadius {
 	b.TopLeft = s
 	b.TopRight = s
