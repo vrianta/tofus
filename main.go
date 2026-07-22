@@ -16,7 +16,6 @@ var Args = gonfig.New[struct {
 func main() {
 	if Args.Version {
 		gulog.Info("Version - %s", Version)
-		return
 	}
 	if Args.Build {
 		cmd.Build()

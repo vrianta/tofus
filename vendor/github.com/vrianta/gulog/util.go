@@ -17,20 +17,29 @@ type massage struct {
 	conf      *Config
 }
 
-// chan for pushing massages
-var massages = make(chan massage)
+// chan for pushing massages (buffered to avoid blocking the sender)
+var massages = make(chan massage, 100)
 
 var waitG = sync.WaitGroup{}
 
 func init() {
+	waitG.Add(1)
 	go startLogging()
 }
 
 func startLogging() {
+	// fmt.Println("gulog: startLogging goroutine started")
+	waitG.Done()
 	for {
 		msg := <-massages
 
-		switch conf.Format {
+		// prefer per-message config if provided
+		c := conf
+		if msg.conf != nil {
+			c = *msg.conf
+		}
+
+		switch c.Format {
 		case "json":
 			logEntry := map[string]any{
 				"timestamp": msg.timestamp,
@@ -38,26 +47,28 @@ func startLogging() {
 				"message":   msg.data,
 			}
 			if data, err := json.Marshal(logEntry); err == nil {
-				if !conf.NoLog {
+				if !c.NoLog {
 					fmt.Print(string(data))
 				}
-				if conf.File != "" {
-					if err := os.WriteFile(conf.File, []byte(data), fs.ModePerm); err != nil {
-						fmt.Errorf("Failed to save the log in %s \nreason: %s", conf.File, err.Error())
+				if c.File != "" {
+					if err := os.WriteFile(c.File, []byte(data), fs.ModePerm); err != nil {
+						fmt.Errorf("Failed to save the log in %s \nreason: %s", c.File, err.Error())
 					}
 				}
 			}
 		case "text":
-			if !conf.NoLog {
+		default:
+			if !c.NoLog {
 				fmt.Printf("%s[%s] %s: %s\033[0m\n", msg.color, msg.timestamp, msg.level, msg.data)
 			}
-			if conf.File != "" {
-				if err := os.WriteFile(conf.File, []byte(msg.data), fs.ModePerm); err != nil {
-					fmt.Errorf("Failed to save the log in %s \nreason: %s", conf.File, err.Error())
+			if c.File != "" {
+				if err := os.WriteFile(c.File, []byte(msg.data), fs.ModePerm); err != nil {
+					fmt.Errorf("Failed to save the log in %s \nreason: %s", c.File, err.Error())
 				}
 			}
-
 		}
+
+		waitG.Done()
 
 	}
 }
