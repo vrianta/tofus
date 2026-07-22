@@ -23,6 +23,7 @@ func Build() {
 	wd, _ := os.Getwd()
 	gulog.Info("Starting the Build Process")
 	buildDir := filepath.Join(wd, "build")
+	runDir = buildDir
 	gulog.Info("Creating Build Directory")
 
 	// check if DIR exists

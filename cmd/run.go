@@ -24,6 +24,8 @@ var indexHtml []byte
 //go:embed ui_templates/wasm_exec.js
 var wasmJs []byte
 
+var runDir = "."
+
 /*
 Run the wasm application
 to run we have to build the application and routes and urls
@@ -40,7 +42,7 @@ func Run() {
 		w.Write(wasmJs)
 	})
 
-	routes := buildRoutes(".")
+	routes := buildRoutes(runDir)
 
 	var buf bytes.Buffer
 

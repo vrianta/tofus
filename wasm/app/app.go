@@ -9,15 +9,15 @@ type Context struct {
 	document js.Value
 	// root     js.Value
 
-	Header *Header
-	Body   *Body
+	Head *Head
+	Body *Body
 	// Footer *Footer
 }
 
 func (a *Context) Run() {
 
-	if a.Header != nil {
-		a.Header.render()
+	if a.Head != nil {
+		a.Head.render()
 	}
 
 	if a.Body != nil {

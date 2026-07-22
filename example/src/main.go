@@ -12,7 +12,7 @@ import (
 )
 
 var App = app.Context{
-	Header: &app.Header{
+	Head: &app.Head{
 		Title:       "Test Application",
 		Description: "A Test Application to demostrate, how to use the wasm ui builder",
 	},

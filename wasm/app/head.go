@@ -8,7 +8,7 @@ import (
 	"github.com/vrianta/tofus/ui/dom"
 )
 
-type Header struct {
+type Head struct {
 	Title       string
 	Description string
 	Keywords    []string
@@ -19,7 +19,7 @@ type Header struct {
 	// Viewport Viewport
 }
 
-func (h *Header) render() {
+func (h *Head) render() {
 	if !dom.IsOk() {
 		return
 	}
