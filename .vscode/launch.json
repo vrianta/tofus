@@ -5,14 +5,15 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch Debug",
+            "name": "Launch Debug Run",
             "type": "go",
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}",
             "env": {},
             "args": [
-                "--version"
+                "--build",
+                "--run"
             ]
         },
         {

@@ -54,7 +54,9 @@ func Run() {
 
 	for _, route := range routes {
 
-		if route != "/" {
+		wasm_file_path := filepath.Join(route, "main.wasm")
+
+		if route != "." {
 			route = "/" + route
 		} else { // means root and we need to remove / for root
 			route = ""
@@ -83,7 +85,7 @@ func Run() {
 		// http.HandleFunc(route+"/main.wasm", func(w http.ResponseWriter, r *http.Request) {
 		// 	http.Redirect(w, r, route+"/main.wasm/", http.StatusMovedPermanently)
 		// })
-		wasm_file_path := filepath.Join(route, "main.wasm")
+
 		if wasm, err := os.ReadFile(wasm_file_path); err == nil {
 			http.HandleFunc(route+"/", func(w http.ResponseWriter, r *http.Request) {
 				w.Write([]byte(output))
@@ -117,6 +119,8 @@ func buildRoutes(src string) []string {
 		return routes
 	}
 
+	hasWasm := false
+
 	for _, entry := range entries {
 		if entry.IsDir() {
 			for _, r := range buildRoutes(filepath.Join(src, entry.Name())) {
@@ -125,8 +129,16 @@ func buildRoutes(src string) []string {
 			continue
 		}
 
-		if entry.Name() == "main.wasm" && len(routes) < 1 {
-			routes = append(routes, "/")
+		if entry.Name() == "main.wasm" {
+			hasWasm = true
+		}
+	}
+
+	if hasWasm {
+		if src == runDir {
+			routes = append(routes, ".")
+		} else {
+			routes = append(routes, "")
 		}
 	}
 
