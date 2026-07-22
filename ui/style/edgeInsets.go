@@ -47,3 +47,15 @@ func (e edgeInsets) String() string {
 		e.Left.String(),
 	)
 }
+
+func (e edgeInsets) SetHorizontal(v Size) edgeInsets {
+	e.Left = v
+	e.Right = v
+	return e
+}
+
+func (e edgeInsets) SetVertical(v Size) edgeInsets {
+	e.Top = v
+	e.Bottom = v
+	return e
+}

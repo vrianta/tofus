@@ -7,6 +7,7 @@ type displays struct {
 	Inline      Display
 	InlineBlock Display
 	Flex        Display
+	InlineFlex  Display
 	Grid        Display
 	None        Display
 }
@@ -16,6 +17,7 @@ var DisplaysType = displays{
 	Inline:      "inline",
 	InlineBlock: "inline-block",
 	Flex:        "flex",
+	InlineFlex:  "inline-flex",
 	Grid:        "grid",
 	None:        "none",
 }

@@ -40,7 +40,7 @@ var App = app.Context{
 		Style: style.Context{
 			Width:           style.Sizes.Percent(100),
 			Height:          style.Sizes.Vh(100),
-			BackgroundColor: style.Colors.Hex("#fcfcfc"),
+			BackgroundColor: style.Colors.Hex("#7b7b7b"),
 			Display:         style.DisplaysType.Block,
 			Margin:          style.EdgeInsets.SetAll(style.Sizes.Percent(0)),
 			Padding:         style.EdgeInsets.SetAll(style.Sizes.Percent(0)),

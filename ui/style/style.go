@@ -47,8 +47,8 @@ type Context struct {
 	TextAlign  TextAlign
 
 	// Effects
-	Opacity float64
-	Shadow  BoxShadow
+	Opacity   float64
+	BoxShadow BoxShadow
 
 	// Overflow
 	Overflow Overflow
@@ -72,6 +72,8 @@ type Context struct {
 
 	Transition string
 	Transform  string
+
+	UserSelect userSelect
 }
 
 func (c Context) String() string {
@@ -127,7 +129,7 @@ func (c Context) String() string {
 	if c.Opacity > 0 {
 		add("opacity", fmt.Sprintf("%g", c.Opacity))
 	}
-	add("box-shadow", c.Shadow.String())
+	add("box-shadow", c.BoxShadow.String())
 
 	// Overflow
 	add("overflow", string(c.Overflow))

@@ -40,33 +40,11 @@ func (e *Element) AppendChild(child Element) {
 	e.Value.Call("appendChild", child.Value)
 }
 
-func (e *Element) AppendHeader(element Element) Element {
-	header := CreateElement("header")
+func (e *Element) OnClick(fn func()) {
+	callback := js.FuncOf(func(this js.Value, args []js.Value) any {
+		fn()
+		return nil
+	})
 
-	e.AppendChild(element)
-	return header
-}
-
-func (e *Element) AppendFooter(element Element) Element {
-	footer := CreateElement("footer")
-	e.AppendChild(element)
-	return footer
-}
-
-func (e *Element) AppendMain() Element {
-	main := CreateElement("main")
-	e.AppendChild(main)
-	return main
-}
-
-func (e *Element) AppendSection() Element {
-	section := CreateElement("section")
-	e.AppendChild(section)
-	return section
-}
-
-func (e *Element) AppendDiv() Element {
-	div := CreateElement("div")
-	e.AppendChild(div)
-	return div
+	e.Call("addEventListener", "click", callback)
 }

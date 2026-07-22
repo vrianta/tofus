@@ -15,6 +15,22 @@ type BorderRadius struct {
 	BottomRight Size
 }
 
+func (b BorderRadius) SetAll(s Size) BorderRadius {
+	b.TopLeft = s
+	b.TopRight = s
+	b.BottomLeft = s
+	b.BottomRight = s
+	return b
+}
+
+func (b Border) None() Border {
+	return Border{
+		Width: Sizes.None,
+		Style: "none",
+		Color: Colors.White,
+	}
+}
+
 func (b Border) String() string {
 	if b.Width == "" && b.Style == "" && b.Color == "" {
 		return ""

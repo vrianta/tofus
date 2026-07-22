@@ -9,11 +9,13 @@ type Size string
 type sizes struct {
 	Auto Size
 	Full Size
+	None Size
 }
 
 var Sizes = sizes{
 	Auto: "auto",
 	Full: "100%",
+	None: "",
 }
 
 func (s *sizes) Px(v int) Size {
