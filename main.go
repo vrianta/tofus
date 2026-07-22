@@ -1,9 +1,8 @@
 package main
 
 import (
-	"fmt"
-
 	gonfig "github.com/vrianta/gonfig/v1"
+	"github.com/vrianta/gulog"
 	"github.com/vrianta/tofus/cmd"
 )
 
@@ -16,7 +15,7 @@ var Args = gonfig.New[struct {
 
 func main() {
 	if Args.Version {
-		fmt.Println("Version", Version)
+		gulog.Info("Version - %s", Version)
 		return
 	}
 	if Args.Build {
@@ -24,5 +23,7 @@ func main() {
 	}
 
 	// http.ListenAndServe(`:8080`, http.FileServer(http.Dir(`./wasm/`)))
+
+	gulog.Wait()
 
 }

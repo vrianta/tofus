@@ -43,7 +43,6 @@ func Build() {
 		os.Exit(-1)
 	}
 	err := create_build_files(src_folder_path, buildDir)
-
 	if err != nil {
 		panic(err)
 	}
