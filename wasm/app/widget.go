@@ -1,9 +1,9 @@
 //go:build js && wasm
 // +build js,wasm
 
-package ui
+package app
 
-import "github.com/vrianta/tofus/ui/dom"
+import "github.com/vrianta/tofus/wasm/app/dom"
 
 type Widget interface {
 	Render() dom.Element

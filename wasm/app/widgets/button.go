@@ -4,8 +4,8 @@
 package widgets
 
 import (
-	"github.com/vrianta/tofus/ui/dom"
 	"github.com/vrianta/tofus/ui/style"
+	"github.com/vrianta/tofus/wasm/app/dom"
 )
 
 type Button struct {

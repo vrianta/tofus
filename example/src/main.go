@@ -4,11 +4,10 @@
 package main
 
 import (
-	"github.com/vrianta/tofus/ui"
-	"github.com/vrianta/tofus/ui/layout"
 	"github.com/vrianta/tofus/ui/style"
-	"github.com/vrianta/tofus/ui/widgets"
 	"github.com/vrianta/tofus/wasm/app"
+	"github.com/vrianta/tofus/wasm/app/layout"
+	"github.com/vrianta/tofus/wasm/app/widgets"
 )
 
 var App = app.Context{
@@ -19,7 +18,7 @@ var App = app.Context{
 	Body: &app.Body{
 		Id:     "body",
 		Header: &header,
-		Children: []ui.Widget{
+		Children: []app.Widget{
 			&layout.Column{
 				Id: "main-column",
 				Style: style.Context{
@@ -27,7 +26,7 @@ var App = app.Context{
 					Height: style.Sizes.Percent(100),
 					Gap:    style.Sizes.Px(12),
 				},
-				Children: []ui.Widget{
+				Children: []app.Widget{
 					&widgets.Text{
 						Value: "Tofus UI",
 					},

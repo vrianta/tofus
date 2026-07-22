@@ -4,21 +4,21 @@
 package main
 
 import (
-	"github.com/vrianta/tofus/ui"
-	"github.com/vrianta/tofus/ui/layout"
 	"github.com/vrianta/tofus/ui/style"
-	"github.com/vrianta/tofus/ui/widgets"
+	"github.com/vrianta/tofus/wasm/app"
+	"github.com/vrianta/tofus/wasm/app/layout"
+	"github.com/vrianta/tofus/wasm/app/widgets"
 )
 
 var header = layout.Header{
-	Children: []ui.Widget{
+	Children: []app.Widget{
 		&layout.Row{
 			Style: style.Context{
 				Width:           style.Sizes.Percent(100),
 				Height:          style.Sizes.Px(64),
 				BackgroundColor: style.Colors.Hex("#e2e2e2"),
 			},
-			Children: []ui.Widget{
+			Children: []app.Widget{
 				&widgets.Text{
 					Value: "Heading",
 				},

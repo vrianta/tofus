@@ -4,15 +4,15 @@
 package layout
 
 import (
-	"github.com/vrianta/tofus/ui"
-	"github.com/vrianta/tofus/ui/dom"
 	"github.com/vrianta/tofus/ui/style"
+	"github.com/vrianta/tofus/wasm/app"
+	"github.com/vrianta/tofus/wasm/app/dom"
 )
 
 type Column struct {
 	Id       string
 	Style    style.Context
-	Children []ui.Widget
+	Children []app.Widget
 }
 
 func (c *Column) Render() dom.Element {

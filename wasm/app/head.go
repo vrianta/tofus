@@ -5,7 +5,7 @@ package app
 
 import (
 	"github.com/vrianta/tofus/ui/browser"
-	"github.com/vrianta/tofus/ui/dom"
+	"github.com/vrianta/tofus/wasm/app/dom"
 )
 
 type Head struct {

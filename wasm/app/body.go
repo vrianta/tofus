@@ -4,17 +4,16 @@
 package app
 
 import (
-	"github.com/vrianta/tofus/ui"
-	"github.com/vrianta/tofus/ui/dom"
 	"github.com/vrianta/tofus/ui/style"
+	"github.com/vrianta/tofus/wasm/app/dom"
 )
 
 type Body struct {
 	Style    style.Context
 	Id       string
-	Header   ui.Widget
-	Children []ui.Widget
-	Footer   ui.Widget
+	Header   Widget
+	Children []Widget
+	Footer   Widget
 }
 
 func (b *Body) render() {

@@ -4,9 +4,8 @@
 package widgets
 
 import (
-	"github.com/vrianta/tofus/ui"
-	"github.com/vrianta/tofus/ui/dom"
 	"github.com/vrianta/tofus/ui/style"
+	"github.com/vrianta/tofus/wasm/app/dom"
 )
 
 type Text struct {
@@ -15,7 +14,7 @@ type Text struct {
 	Style style.Context
 }
 
-var _ ui.Widget = (*Text)(nil)
+// var _ ui.Widget = (*Text)(nil)
 
 func (t *Text) Render() dom.Element {
 	element := dom.CreateElement("span")
