@@ -12,7 +12,9 @@ import (
 type Body struct {
 	Style    style.Context
 	Id       string
+	Header   ui.Widget
 	Children []ui.Widget
+	Footer   ui.Widget
 }
 
 func (b *Body) render() {
@@ -24,8 +26,16 @@ func (b *Body) render() {
 	}
 
 	body.SetStyle(b.Style.String())
+	// render header
+	if b.Header != nil {
+		body.AppendChild(b.Header.Render())
+	}
 
 	for _, child := range b.Children {
 		body.AppendChild(child.Render())
+	}
+
+	if b.Footer != nil {
+		body.AppendChild(b.Footer.Render())
 	}
 }

@@ -15,8 +15,8 @@ type Context struct {
 	MaxHeight Size
 
 	// Spacing
-	Padding EdgeInsets
-	Margin  EdgeInsets
+	Padding edgeInsets
+	Margin  edgeInsets
 
 	// Colors
 	BackgroundColor Color

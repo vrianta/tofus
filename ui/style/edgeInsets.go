@@ -2,14 +2,16 @@ package style
 
 import "fmt"
 
-type EdgeInsets struct {
+type edgeInsets struct {
 	Top    Size
 	Right  Size
 	Bottom Size
 	Left   Size
 }
 
-func (e EdgeInsets) SetAll(v Size) EdgeInsets {
+var EdgeInsets = edgeInsets{}
+
+func (e edgeInsets) SetAll(v Size) edgeInsets {
 	e.Top = v
 	e.Bottom = v
 	e.Left = v
@@ -18,7 +20,7 @@ func (e EdgeInsets) SetAll(v Size) EdgeInsets {
 	return e
 }
 
-func (e EdgeInsets) String() string {
+func (e edgeInsets) String() string {
 	if e.Top == e.Right && e.Top == e.Bottom && e.Top == e.Left {
 		return e.Top.String()
 	}
