@@ -1,12 +1,12 @@
 //go:build js && wasm
 // +build js,wasm
 
-package js
+package dom
 
 import (
 	"strings"
 
-	"github.com/vrianta/tofus/wasm/browser"
+	"github.com/vrianta/tofus/ui/browser"
 )
 
 func SetTitle(title string) {

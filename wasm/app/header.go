@@ -4,8 +4,8 @@
 package app
 
 import (
-	"github.com/vrianta/tofus/wasm/browser"
-	"github.com/vrianta/tofus/wasm/internal/js"
+	"github.com/vrianta/tofus/ui/browser"
+	"github.com/vrianta/tofus/ui/dom"
 )
 
 type Header struct {
@@ -20,36 +20,36 @@ type Header struct {
 }
 
 func (h *Header) render() {
-	if !js.IsOk() {
+	if !dom.IsOk() {
 		return
 	}
 
 	// <title>
 	if h.Title != "" {
-		js.SetTitle(h.Title)
+		dom.SetTitle(h.Title)
 	}
 
 	// <html lang="">
 	if h.Language != "" {
-		js.SetLang(h.Language)
+		dom.SetLang(h.Language)
 	}
 
 	// meta tags
 	if h.Description != "" {
-		js.SetDescription(h.Description)
+		dom.SetDescription(h.Description)
 	}
 
 	if len(h.Keywords) > 0 {
-		js.SetKeywords(h.Keywords)
+		dom.SetKeywords(h.Keywords)
 	}
 
 	// charset
 	if h.Charset != "" {
-		js.SetCharset(h.Charset)
+		dom.SetCharset(h.Charset)
 	}
 
 	// favicon
 	if h.Favicon != "" {
-		js.SetFavicon(h.Favicon)
+		dom.SetFavicon(h.Favicon)
 	}
 }

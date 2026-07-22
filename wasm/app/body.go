@@ -4,8 +4,8 @@
 package app
 
 import (
-	"github.com/vrianta/tofus/wasm/internal/js"
-	"github.com/vrianta/tofus/wasm/style"
+	"github.com/vrianta/tofus/ui/dom"
+	"github.com/vrianta/tofus/ui/style"
 )
 
 type Body struct {
@@ -16,7 +16,7 @@ type Body struct {
 
 func (b *Body) render() {
 
-	body := js.GetBody()
+	body := dom.GetBody()
 
 	if b.Id != "" {
 		body.SetId(b.Id)

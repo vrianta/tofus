@@ -4,8 +4,8 @@
 package main
 
 import (
+	"github.com/vrianta/tofus/ui/style"
 	"github.com/vrianta/tofus/wasm/app"
-	"github.com/vrianta/tofus/wasm/style"
 )
 
 var App = app.Context{
