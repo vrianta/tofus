@@ -3,23 +3,9 @@
 
 package dom
 
-import "syscall/js"
+func GetBody() Element {
 
-type body struct {
-	js.Value
-}
-
-func (b *body) SetId(id string) {
-	b.Set("id", id)
-}
-
-func (b *body) SetStyle(style string) {
-	b.Get("style").Set("cssText", style)
-}
-
-func GetBody() body {
-
-	return body{
+	return Element{
 		Value: doc.Get("body"),
 	}
 }

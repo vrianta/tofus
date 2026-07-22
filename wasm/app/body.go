@@ -26,6 +26,6 @@ func (b *Body) render() {
 	body.SetStyle(b.Style.String())
 
 	for _, child := range b.Children {
-		child.Render()
+		body.AppendChild(child.Render())
 	}
 }

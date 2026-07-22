@@ -1,5 +1,7 @@
 package ui
 
+import "github.com/vrianta/tofus/ui/dom"
+
 type Widget interface {
-	Render()
+	Render() dom.Element
 }
