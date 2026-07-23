@@ -21,7 +21,3 @@ var Displays = displays{
 	Grid:        "grid",
 	None:        "none",
 }
-
-func (d Display) string() string {
-	return string(d)
-}

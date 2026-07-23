@@ -41,7 +41,3 @@ func (s *sizes) Vw(v float64) Size {
 func (s *sizes) Vh(v float64) Size {
 	return Size(fmt.Sprintf("%.2fvh", v))
 }
-
-func (s Size) string() string {
-	return string(s)
-}

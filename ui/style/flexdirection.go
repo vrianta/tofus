@@ -1,7 +1,5 @@
 package style
 
-import "strconv"
-
 type FlexDirection string
 
 var FlexDirections = struct {
@@ -128,8 +126,4 @@ var ObjectFits = struct {
 	Cover:     "cover",
 	None:      "none",
 	ScaleDown: "scale-down",
-}
-
-func (f FontWeight) string() string {
-	return strconv.Itoa(int(f))
 }

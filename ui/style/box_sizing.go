@@ -18,10 +18,3 @@ func (boxSizes) Content() BoxSize {
 func (boxSizes) Border() BoxSize {
 	return boxSizingBorder
 }
-
-func (b *BoxSize) string() string {
-	if b == nil {
-		return ""
-	}
-	return string(*b)
-}

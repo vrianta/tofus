@@ -9,6 +9,7 @@ import (
 	"syscall/js"
 
 	"github.com/vrianta/tofus/ui/style"
+	"github.com/vrianta/tofus/wasm/internal/render"
 )
 
 type Element struct {
@@ -70,9 +71,9 @@ func addPseudoRules(className string, ctx style.Context) {
 	if ctx.OnFocus != "" {
 		appendStyleRules(fmt.Sprintf(".%s:focus{%s}", className, string(ctx.OnFocus)))
 	}
-	if ctx.Disabled != nil {
-		appendStyleRules(fmt.Sprintf(".%s:disabled{%s}", className, ctx.Disabled.String()))
-	}
+	// if ctx.Disabled != nil {
+	// 	appendStyleRules(fmt.Sprintf(".%s:disabled{%s}", className, ctx.Disabled.String()))
+	// }
 }
 
 // AddClass adds a CSS class name to the element's class list.
@@ -84,7 +85,7 @@ func (e *Element) AddClass(className string) {
 // pseudo-state styles such as Hover, Active, Focus, or Disabled, a generated
 // CSS class is created and the pseudo rules are appended to the shared stylesheet.
 func (e *Element) ApplyStyle(ctx style.Context) {
-	if ctx.OnHover == "" && ctx.OnActive == "" && ctx.OnFocus == "" && ctx.Disabled == nil {
+	if ctx.OnHover == "" && ctx.OnActive == "" && ctx.OnFocus == "" { //&& ctx.Disabled == nil {
 		e.SetStyle(ctx)
 		return
 	}
@@ -106,7 +107,7 @@ func (e *Element) SetId(id string) {
 
 // SetStyle sets the element's inline CSS text from the provided style context.
 func (e *Element) SetStyle(style style.Context) {
-	e.Get("style").Set("cssText", style.String())
+	e.Get("style").Set("cssText", render.Style(style))
 }
 
 // SetText sets the element's text content.

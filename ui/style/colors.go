@@ -14,10 +14,6 @@ const (
 	colorBlack       Color = "#000000"
 )
 
-func (c *Color) string() string {
-	return string(*c)
-}
-
 func (colors) Transparent() Color {
 	return colorTransparent
 }

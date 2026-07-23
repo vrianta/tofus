@@ -1,7 +1,5 @@
 package style
 
-import "fmt"
-
 type Border struct {
 	Width Size
 	Style string
@@ -87,24 +85,6 @@ func (borders) Outset(width Size, color Color) Border {
 	}
 }
 
-func (b Border) string() string {
-	if b.Width == "" {
-		b.Width = "0px"
-	}
-	if b.Style == "" {
-		b.Style = "solid"
-	}
-	if b.Color == "" {
-		b.Color = Colors.Black()
-	}
-	return fmt.Sprintf(
-		"%s %s %s",
-		b.Width.string(),
-		b.Style,
-		b.Color.string(),
-	)
-}
-
 type BorderRadius struct {
 	TopLeft     Size
 	TopRight    Size
@@ -164,30 +144,4 @@ func (b BorderRadius) SetRight(v Size) BorderRadius {
 	b.TopRight = v
 	b.BottomRight = v
 	return b
-}
-func (b BorderRadius) string() string {
-	// all sides equal
-	if b.TopLeft == b.TopRight &&
-		b.TopLeft == b.BottomRight &&
-		b.TopLeft == b.BottomLeft {
-		return b.TopLeft.string()
-	}
-
-	// top-left/bottom-right and top-right/bottom-left
-	if b.TopLeft == b.BottomRight &&
-		b.TopRight == b.BottomLeft {
-		return fmt.Sprintf(
-			"%s %s",
-			b.TopLeft.string(),
-			b.TopRight.string(),
-		)
-	}
-
-	return fmt.Sprintf(
-		"%s %s %s %s",
-		b.TopLeft.string(),
-		b.TopRight.string(),
-		b.BottomRight.string(),
-		b.BottomLeft.string(),
-	)
 }

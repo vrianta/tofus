@@ -1,7 +1,5 @@
 package style
 
-import "fmt"
-
 type Shadow struct {
 	Inset  bool
 	X      Size
@@ -47,29 +45,4 @@ func (shadows) Inset(
 		Spread: spread,
 		Color:  color,
 	}
-}
-
-func (s Shadow) string() string {
-	if s.X == "" &&
-		s.Y == "" &&
-		s.Blur == "" &&
-		s.Spread == "" &&
-		s.Color == "" {
-		return ""
-	}
-
-	prefix := ""
-	if s.Inset {
-		prefix = "inset "
-	}
-
-	return fmt.Sprintf(
-		"%s%s %s %s %s %s",
-		prefix,
-		s.X.string(),
-		s.Y.string(),
-		s.Blur.string(),
-		s.Spread.string(),
-		s.Color.string(),
-	)
 }
