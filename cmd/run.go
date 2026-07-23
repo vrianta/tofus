@@ -117,6 +117,7 @@ func buildRoutes(src string) []string {
 	}
 
 	hasWasm := false
+	hasOtherFiles := false
 
 	for _, entry := range entries {
 		if entry.IsDir() {
@@ -128,6 +129,8 @@ func buildRoutes(src string) []string {
 
 		if entry.Name() == "main.wasm" {
 			hasWasm = true
+		} else if filepath.Ext(entry.Name()) != "" {
+			hasOtherFiles = true
 		}
 	}
 
@@ -137,6 +140,25 @@ func buildRoutes(src string) []string {
 		} else {
 			routes = append(routes, "")
 		}
+	}
+	if hasOtherFiles {
+
+		// create http storage server for the last route recorded
+		var route string
+		if src == "." {
+			route = ""
+		} else {
+			route = "/" + src
+		}
+		http.Handle(
+			route,
+			http.StripPrefix(
+				route,
+				http.FileServer(http.Dir(route)),
+			),
+		)
+		gulog.Debug("Created File Server for %s", route)
+
 	}
 
 	return routes
