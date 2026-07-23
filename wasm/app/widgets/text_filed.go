@@ -46,7 +46,7 @@ func (t *TextField) Render() dom.Element {
 		input.SetAttribute("value", t.Value)
 	}
 
-	input.SetStyle(t.Style.String())
+	input.ApplyStyle(t.Style)
 
 	if t.OnInput != nil {
 		input.OnInput(func(value string) {

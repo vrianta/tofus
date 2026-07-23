@@ -26,7 +26,7 @@ func (c *Column) Render() dom.Element {
 	c.Style.Display = style.DisplaysType.Flex
 	c.Style.FlexDirection = style.FlexDirections.Column
 
-	div.SetStyle(c.Style.String())
+	div.ApplyStyle(c.Style)
 
 	for _, child := range c.Children {
 		div.AppendChild(child.Render())

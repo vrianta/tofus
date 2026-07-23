@@ -3,18 +3,78 @@
 
 package dom
 
-import "syscall/js"
+import (
+	"fmt"
+	"strings"
+	"syscall/js"
+
+	"github.com/vrianta/tofus/ui/style"
+)
 
 type Element struct {
 	js.Value
 	callbacks []js.Func
 }
 
+var styleElement js.Value
+var styleClassCounter int
+
 func CreateElement(tag string) Element {
 	document := js.Global().Get("document")
 	return Element{
 		Value: document.Call("createElement", tag),
 	}
+}
+
+func newStyleClassName() string {
+	styleClassCounter++
+	return fmt.Sprintf("tofus-style-%d", styleClassCounter)
+}
+
+func ensureStyleSheet() js.Value {
+	if styleElement.IsUndefined() || styleElement.IsNull() {
+		doc := js.Global().Get("document")
+		styleElement = doc.Call("createElement", "style")
+		styleElement.Set("type", "text/css")
+		doc.Get("head").Call("appendChild", styleElement)
+	}
+	return styleElement
+}
+
+func appendStyleRules(css string) {
+	styleEl := ensureStyleSheet()
+	styleEl.Set("textContent", strings.TrimSpace(styleEl.Get("textContent").String()+"\n"+css))
+}
+
+func addPseudoRules(className string, ctx style.Context) {
+	if ctx.Hover != nil {
+		appendStyleRules(fmt.Sprintf(".%s:hover{%s}", className, ctx.Hover.String()))
+	}
+	if ctx.Active != nil {
+		appendStyleRules(fmt.Sprintf(".%s:active{%s}", className, ctx.Active.String()))
+	}
+	if ctx.Focus != nil {
+		appendStyleRules(fmt.Sprintf(".%s:focus{%s}", className, ctx.Focus.String()))
+	}
+	if ctx.Disabled != nil {
+		appendStyleRules(fmt.Sprintf(".%s:disabled{%s}", className, ctx.Disabled.String()))
+	}
+}
+
+func (e *Element) AddClass(className string) {
+	e.Call("classList").Call("add", className)
+}
+
+func (e *Element) ApplyStyle(ctx style.Context) {
+	if ctx.Hover == nil && ctx.Active == nil && ctx.Focus == nil && ctx.Disabled == nil {
+		e.SetStyle(ctx.String())
+		return
+	}
+
+	className := newStyleClassName()
+	e.AddClass(className)
+	e.SetStyle(ctx.String())
+	addPseudoRules(className, ctx)
 }
 
 func (e Element) JSValue() js.Value {

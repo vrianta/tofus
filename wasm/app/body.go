@@ -24,7 +24,7 @@ func (b *Body) render() {
 		body.SetId(b.Id)
 	}
 
-	body.SetStyle(b.Style.String())
+	body.ApplyStyle(b.Style)
 	// render header
 	if b.Header != nil {
 		body.AppendChild(b.Header.Render())

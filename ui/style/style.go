@@ -76,6 +76,11 @@ type Context struct {
 	Transform  string
 
 	UserSelect userSelect
+
+	Hover    *Context
+	Active   *Context
+	Focus    *Context
+	Disabled *Context
 }
 
 func (c Context) String() string {

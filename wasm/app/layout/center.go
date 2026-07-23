@@ -44,7 +44,7 @@ func (c *Center) Render() dom.Element {
 		s.AlignItems = style.AlignItemsList.Center
 	}
 
-	div.SetStyle(s.String())
+	div.ApplyStyle(s)
 
 	if c.Child != nil {
 		div.AppendChild(c.Child.Render())

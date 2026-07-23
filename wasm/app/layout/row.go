@@ -12,6 +12,7 @@ import (
 type Row struct {
 	Id       string
 	Style    style.Context
+	Gap      style.Size
 	Children []app.Widget
 }
 
@@ -26,10 +27,17 @@ func (r Row) Render() dom.Element {
 	r.Style.Display = style.DisplaysType.Flex
 	r.Style.FlexDirection = style.FlexDirections.Row
 
-	row.SetStyle(r.Style.String())
+	// Apply gap if provided
+	if r.Gap != "" {
+		r.Style.Gap = r.Gap
+	}
+
+	row.ApplyStyle(r.Style)
 
 	for _, child := range r.Children {
-		row.AppendChild(child.Render())
+		if child != nil {
+			row.AppendChild(child.Render())
+		}
 	}
 
 	return row

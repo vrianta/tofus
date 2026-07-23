@@ -24,7 +24,7 @@ func (t *Text) Render() dom.Element {
 	}
 
 	element.SetText(t.Value)
-	element.SetStyle(t.Style.String())
+	element.ApplyStyle(t.Style)
 
 	return element
 }

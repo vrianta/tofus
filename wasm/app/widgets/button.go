@@ -23,7 +23,7 @@ func (b Button) Render() dom.Element {
 	}
 
 	button.SetText(b.Text)
-	button.SetStyle(b.Style.String())
+	button.ApplyStyle(b.Style)
 
 	if b.OnClick != nil {
 		button.OnClick(b.OnClick)

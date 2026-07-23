@@ -23,7 +23,7 @@ func (s Spacer) Render() dom.Element {
 	// Force the spacer to grow
 	s.Style.FlexGrow = 1
 
-	div.SetStyle(s.Style.String())
+	div.ApplyStyle(s.Style)
 
 	return div
 }

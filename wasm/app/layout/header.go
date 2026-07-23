@@ -22,7 +22,7 @@ func (h *Header) Render() dom.Element {
 		header.SetId(h.Id)
 	}
 
-	header.SetStyle(h.Style.String())
+	header.ApplyStyle(h.Style)
 
 	for _, child := range h.Children {
 		header.AppendChild(child.Render())

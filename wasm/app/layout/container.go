@@ -15,6 +15,11 @@ type Container struct {
 	Child app.Widget
 }
 
+// // Render implements [app.Widget].
+// func (c *Container) Render() dom.Element {
+// 	panic("unimplemented")
+// }
+
 func (c *Container) Render() dom.Element {
 	div := dom.CreateElement("div")
 
@@ -22,7 +27,7 @@ func (c *Container) Render() dom.Element {
 		div.SetId(c.Id)
 	}
 
-	div.SetStyle(c.Style.String())
+	div.ApplyStyle(c.Style)
 
 	if c.Child != nil {
 		div.AppendChild(c.Child.Render())

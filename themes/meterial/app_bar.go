@@ -1,0 +1,60 @@
+//go:build js && wasm
+// +build js,wasm
+
+package meterial
+
+import (
+	"github.com/vrianta/tofus/ui/style"
+	"github.com/vrianta/tofus/wasm/app"
+	"github.com/vrianta/tofus/wasm/app/layout"
+	"github.com/vrianta/tofus/wasm/app/widgets"
+)
+
+func AppBar(
+	title string,
+	leading app.Widget,
+	actions ...app.Widget,
+) app.Widget {
+
+	children := []app.Widget{
+		leading,
+
+		&widgets.Text{
+			Value: title,
+			Style: style.Context{
+				FontSize:   style.Sizes.Px(22),
+				FontWeight: style.FontWeights.SemiBold,
+			},
+		},
+
+		layout.Spacer{},
+	}
+	children = append(children, actions...)
+
+	return &layout.Container{
+		Style: style.Context{
+			Width:           style.Sizes.Full,
+			Height:          style.Sizes.Px(64),
+			Display:         style.DisplaysType.Flex,
+			AlignItems:      style.AlignItemsList.Center,
+			BackgroundColor: style.Colors.White,
+			Padding: style.EdgeInset{}.
+				SetHorizontal(style.Sizes.Px(16)),
+			Border: style.Border{}.Solid(
+				style.Sizes.Px(1),
+				style.Colors.RGBA(0, 0, 0, 0.08),
+			),
+			BoxShadow: style.Shadow(
+				style.Sizes.Px(0),
+				style.Sizes.Px(1),
+				style.Sizes.Px(3),
+				style.Sizes.Px(0),
+				style.Colors.RGBA(0, 0, 0, 0.08),
+			),
+		},
+		Child: layout.Row{
+			Gap:      style.Sizes.Px(12),
+			Children: children,
+		},
+	}
+}
