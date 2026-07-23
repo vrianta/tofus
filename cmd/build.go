@@ -2,6 +2,7 @@ package cmd
 
 import (
 	_ "embed"
+	"io"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -78,6 +79,15 @@ func createBuildFolders(src, dst string) error {
 				if err := BuildWasm(src, dst); err != nil {
 					gulog.Error("Failed to build the wasm of %s\nError: %s", src, err.Error())
 				}
+			} else if filepath.Ext(entry.Name()) != ".go" { // copy the non go files to the build folder
+				srcFile := filepath.Join(src, entry.Name())
+				dstFile := filepath.Join(dst, entry.Name())
+
+				gulog.Info("Copying file %s to %s", srcFile, dstFile)
+
+				if err := copyFile(srcFile, dstFile); err != nil {
+					gulog.Error("Failed to copy file %s to %s\nError: %s", srcFile, dstFile, err.Error())
+				}
 			}
 
 			continue
@@ -99,6 +109,28 @@ func createBuildFolders(src, dst string) error {
 	}
 
 	return nil
+}
+
+func copyFile(src, dst string) error {
+	in, err := os.Open(src)
+	if err != nil {
+		return err
+	}
+	defer in.Close()
+
+	info, err := in.Stat()
+	if err != nil {
+		return err
+	}
+
+	out, err := os.OpenFile(dst, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, info.Mode())
+	if err != nil {
+		return err
+	}
+	defer out.Close()
+
+	_, err = io.Copy(out, in)
+	return err
 }
 
 // this function will build wasm GOOS=js GOARCH=wasm go build -o main.wasm in src
