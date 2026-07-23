@@ -58,12 +58,28 @@ func createBuildFolders(src, dst string) error {
 		return err
 	}
 
+	// wasmsToBuild := map[string]struct {
+	// 	src string
+	// 	dst string
+	// }{}
 	for _, entry := range entries {
 		if !entry.IsDir() {
 
-			if err := BuildWasm(src, dst); err != nil {
-				gulog.Error("Failed to build the wasm of %s\nError: %s", src, err.Error())
+			// if _, ok := wasmsToBuild[src]; !ok {
+			// 	wasmsToBuild[src] = struct {
+			// 		src string
+			// 		dst string
+			// 	}{
+			// 		src: src,
+			// 		dst: dst,
+			// 	}
+			// }
+			if entry.Name() == "main.go" {
+				if err := BuildWasm(src, dst); err != nil {
+					gulog.Error("Failed to build the wasm of %s\nError: %s", src, err.Error())
+				}
 			}
+
 			continue
 		}
 
