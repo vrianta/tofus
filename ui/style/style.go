@@ -77,9 +77,9 @@ type Context struct {
 
 	UserSelect userSelect
 
-	Hover    *Context
-	Active   *Context
-	Focus    *Context
+	OnHover  Color // onHover Color
+	OnActive Color // onActive Color
+	OnFocus  Color // onFocus Color
 	Disabled *Context
 }
 
@@ -167,6 +167,21 @@ func (c Context) String() string {
 
 	add("transition", c.Transition)
 	add("transform", c.Transform)
+
+	// onHover, onActive, onFocus, disabled
+	if c.OnHover != "" {
+		add("on-hover", c.OnHover.String())
+	}
+	if c.OnActive != "" {
+		add("on-active", c.OnActive.String())
+	}
+	if c.OnFocus != "" {
+		add("on-focus", c.OnFocus.String())
+	}
+	if c.Disabled != nil {
+		add("disabled", c.Disabled.String())
+	}
+	// add("", c.BackgroundColor.String())
 
 	// Custom
 	for k, v := range c.Custom {

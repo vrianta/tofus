@@ -20,7 +20,7 @@ var App = app.Context{
 		Id:     "body",
 		Header: meterial.Header("Eample App", true),
 		Children: []app.Widget{
-			meterial.AppBar("AppBar Example", nil),
+			AppBar,
 			&layout.Column{
 				Id: "main-column",
 				Style: style.Context{

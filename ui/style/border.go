@@ -8,6 +8,8 @@ type Border struct {
 	Color Color
 }
 
+var Borders = struct{}{}
+
 type BorderRadius struct {
 	TopLeft     Size
 	TopRight    Size
@@ -34,16 +36,21 @@ func (b BorderRadius) SetAll(s Size) BorderRadius {
 func (b Border) None() Border {
 	return Border{
 		Width: Sizes.None,
-		Style: "none",
+		Style: "",
 		Color: Colors.White,
 	}
 }
 
 func (b Border) String() string {
-	if b.Width == "" && b.Style == "" && b.Color == "" {
-		return ""
+	if b.Width == "" {
+		b.Width = "0px"
 	}
-
+	if b.Style == "" {
+		b.Style = "solid"
+	}
+	if b.Color == "" {
+		b.Color = Colors.Black
+	}
 	return fmt.Sprintf(
 		"%s %s %s",
 		b.Width.String(),

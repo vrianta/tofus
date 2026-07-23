@@ -28,6 +28,14 @@ func CreateElement(tag string) Element {
 	}
 }
 
+// CreateElementNS creates a new DOM element in the provided namespace.
+func CreateElementNS(ns, tag string) Element {
+	document := js.Global().Get("document")
+	return Element{
+		Value: document.Call("createElementNS", ns, tag),
+	}
+}
+
 // newStyleClassName returns a unique CSS class name for generated style rules.
 func newStyleClassName() string {
 	styleClassCounter++
@@ -53,14 +61,14 @@ func appendStyleRules(css string) {
 }
 
 func addPseudoRules(className string, ctx style.Context) {
-	if ctx.Hover != nil {
-		appendStyleRules(fmt.Sprintf(".%s:hover{%s}", className, ctx.Hover.String()))
+	if ctx.OnHover != "" {
+		appendStyleRules(fmt.Sprintf(".%s:hover{%s}", className, ctx.OnHover.String()))
 	}
-	if ctx.Active != nil {
-		appendStyleRules(fmt.Sprintf(".%s:active{%s}", className, ctx.Active.String()))
+	if ctx.OnActive != "" {
+		appendStyleRules(fmt.Sprintf(".%s:active{%s}", className, ctx.OnActive.String()))
 	}
-	if ctx.Focus != nil {
-		appendStyleRules(fmt.Sprintf(".%s:focus{%s}", className, ctx.Focus.String()))
+	if ctx.OnFocus != "" {
+		appendStyleRules(fmt.Sprintf(".%s:focus{%s}", className, ctx.OnFocus.String()))
 	}
 	if ctx.Disabled != nil {
 		appendStyleRules(fmt.Sprintf(".%s:disabled{%s}", className, ctx.Disabled.String()))
@@ -76,7 +84,7 @@ func (e *Element) AddClass(className string) {
 // pseudo-state styles such as Hover, Active, Focus, or Disabled, a generated
 // CSS class is created and the pseudo rules are appended to the shared stylesheet.
 func (e *Element) ApplyStyle(ctx style.Context) {
-	if ctx.Hover == nil && ctx.Active == nil && ctx.Focus == nil && ctx.Disabled == nil {
+	if ctx.OnHover == "" && ctx.OnActive == "" && ctx.OnFocus == "" && ctx.Disabled == nil {
 		e.SetStyle(ctx)
 		return
 	}

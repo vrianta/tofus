@@ -6,12 +6,13 @@ package meterial
 import (
 	"github.com/vrianta/tofus/ui/style"
 	"github.com/vrianta/tofus/wasm/app"
+	"github.com/vrianta/tofus/wasm/app/dom"
 	"github.com/vrianta/tofus/wasm/app/widgets"
 )
 
 func IconButton(
 	icon app.Widget,
-	onClick func(),
+	onClick func(dom.Element),
 ) app.Widget {
 	return widgets.Button{
 		Style: style.Context{
@@ -21,10 +22,8 @@ func IconButton(
 			Border:          style.Border{}.None(),
 			BorderRadius:    style.BorderRadius{}.SetAll(style.Sizes.Percent(50)),
 			BackgroundColor: style.Colors.Transparent,
-			// HoverColor:      style.Colors.Hex("#E0E0E0"),
-			// PressedColor:    style.Colors.Hex("#D5D5D5"),
-			// OnClick:         onClick,
 		},
-		// icon,
+		Child:   icon,
+		OnClick: onClick,
 	}
 }

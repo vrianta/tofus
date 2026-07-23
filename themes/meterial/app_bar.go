@@ -8,6 +8,7 @@ import (
 	"github.com/vrianta/tofus/wasm/app"
 	"github.com/vrianta/tofus/wasm/app/layout"
 	"github.com/vrianta/tofus/wasm/app/widgets"
+	"github.com/vrianta/tofus/wasm/builder"
 )
 
 func AppBar(
@@ -19,13 +20,13 @@ func AppBar(
 	children := []app.Widget{
 		leading,
 
-		&widgets.Text{
+		builder.If(title != "" && leading == nil, &widgets.Text{
 			Value: title,
 			Style: style.Context{
 				FontSize:   style.Sizes.Px(22),
 				FontWeight: style.FontWeights.SemiBold,
 			},
-		},
+		}).Widget(),
 
 		layout.Spacer{},
 	}
