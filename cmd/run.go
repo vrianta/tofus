@@ -1,3 +1,4 @@
+// Package cmd contains build and run commands for the Tofus CLI.
 package cmd
 
 import (
@@ -26,13 +27,9 @@ var wasmJs []byte
 
 var runDir = "."
 
-/*
-Run the wasm application
-to run we have to build the application and routes and urls
-structure of the application
-root directory -> every_folder is a route and the go file is the end path
-for example we have a folder called test -> subpath -> test.go then our end route will be /test/subpath/test.go
-*/
+// Run starts the Tofus HTTP server for the generated build/ output.
+// It exposes each main.wasm folder as an app route and serves static
+// assets from directories that contain only non-WASM files.
 func Run() {
 
 	http.HandleFunc("/wasm_exec.js", func(w http.ResponseWriter, r *http.Request) {
@@ -104,10 +101,9 @@ func Run() {
 
 }
 
-// Go thorugh each folder and files look for wasm files
-// it will create http.HandleFunc where it will create indexHtml template
-// pupulate the value of {{ .wasm_url }}
-// wasm url will be /folder1/subf/main.wasm
+// buildRoutes scans a generated build/ directory and returns all routes
+// that should be served as WebAssembly apps. Directories containing
+// main.wasm become app routes, and other directories may become file servers.
 func buildRoutes(src string) []string {
 	var routes []string
 

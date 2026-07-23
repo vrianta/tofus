@@ -1,90 +1,143 @@
 # Tofus
 
-A Tool to Start server for wasm directories and build then
+A Go tool and CLI for building and serving WebAssembly apps from a `src/` directory.
+
+- Module path: `github.com/vrianta/tofus`
+- Go version: `1.24.3`
+
+## Quick Start
+
+1. Put your source code under a `src/` directory.
+2. Run `tofus --build` from the project root.
+3. Run `tofus --run` from the generated `build/` directory, or use `tofus --build --run`.
+
+## Features
+
+- Build WebAssembly apps from Go packages under `src/`
+- Copy non-`.go` files into the `build/` directory as static assets
+- Auto-generate HTTP routes for `main.wasm` applications
+- Serve static assets from generated directories
 
 ## Requirements
 
-- The Source code should be inside the *src* directory this take *src* directory as root
-- *wasm* will only be build if the folder has *main.go* in that folder
+- All source code must be inside the `src/` directory.
+- A WebAssembly build is created only for folders that contain `main.go`.
 
-## How the Tool Works
+## Install
 
-### Build
+Recommended install:
 
 ```bash
-# To build the current project
+go install github.com/vrianta/tofus@latest
+```
+
+Alternative install:
+
+```bash
+./install.sh
+```
+
+## Build
+
+```bash
 tofus --build
 ```
-#### How Build Works
 
-- It will create a new Directory called *build*
-- it will scan the *src* directory
-- It will look for main.go on each directory once it gets the main.go it replicate the same directory pattern and build the main.wasm file
-- It will copy any file which do not have .go extension to the *build* folder with similer folder structure
+### What build does
 
-#### Build Example
+- Creates a `build/` directory.
+- Scans the `src/` directory recursively.
+- For each folder that contains `main.go`, it builds `main.wasm` in the corresponding `build/` location.
+- Copies all non-`.go` files into `build/` while preserving the directory structure.
 
-***Before Build***
+### Build example
 
-src
-|-assets
-|--js
-|---main.js
-|--css
-|---main.css
-|-login
-|--main.go
-|-main.go
+Before build:
 
-***After Build***
-
-build
-|-assets
-|--js
-|---main.js
-|--css
-|---main.css
-|-login
-|--main.wasm
-|-main.wasm
-
-### Run
-
-You can also use this tool to server the server and create auto routing and file serve
-
-```bash
-# How to run
-tofus --run # you have to be inside the build directory
+```
+src/
+  assets/
+    js/
+      main.js
+    css/
+      main.css
+  login/
+    main.go
+  main.go
 ```
 
-To build and run at the same time
-```bash
-tofus --build --run # this will build the app and start running the it without the need to navigating to the build directory
+After build:
+
+```
+build/
+  assets/
+    js/
+      main.js
+    css/
+      main.css
+  login/
+    main.wasm
+  main.wasm
 ```
 
-#### How Routing Works
+## Run
 
-- It scans each and every folder once it found main.wasm it create route for it
-- If it did not found any wasm file but got some other files in the build it will create a FileServer for it
+### Run in `build/`
 
-#### Run Example
+```bash
+cd build
+tofus --run
+```
 
-Build Directory
+### Build and run together
 
-build
-|-assets
-|--js
-|---main.js
-|--css
-|---main.css
-|-login
-|--main.wasm
-|-main.wasm
+```bash
+tofus --build --run
+```
 
-The Routes
-- /
-- /login/
+This builds the project first and then runs the server without requiring you to change into the `build/` directory.
 
-The File Servers
-- /asset/css
-- /asset/js
+## Routing and asset serving
+
+- The tool scans the generated `build/` tree.
+- For each folder containing `main.wasm`, it creates a route for that folder.
+- For folders with only static files, it creates a file server for those assets.
+
+### Run example
+
+Given this `build/` tree:
+
+```
+build/
+  assets/
+    js/
+      main.js
+    css/
+      main.css
+  login/
+    main.wasm
+  main.wasm
+```
+
+Generated routes:
+
+- `/`
+- `/login/`
+
+Static file servers:
+
+- `/assets/css/`
+- `/assets/js/`
+
+## Notes
+
+- Only directories with `main.go` in `src/` become WebAssembly app routes.
+- Non-`.go` files are copied as static assets.
+- If `build/` already exists, it is updated with the new output.
+- Nested `main.go` files are supported as long as they live inside `src/`.
+
+## Troubleshooting
+
+- If `src/` is missing or empty, the build produces no output.
+- If a folder contains no `main.go` and only static files, those files are still copied as static assets.
+- If a route is not created, verify that `main.go` exists in the expected `src/` folder.

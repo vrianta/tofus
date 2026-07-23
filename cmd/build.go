@@ -1,3 +1,4 @@
+// Package cmd contains shared build and run commands for the Tofus CLI.
 package cmd
 
 import (
@@ -17,9 +18,9 @@ type Routes struct {
 var src_folder_path = filepath.Join(".", "src")
 var ViewFolder string = "views"
 
-/*
-Scans entire directory
-*/
+// Build scans the local src/ directory and creates the build/ output tree.
+// It compiles directories containing main.go into WebAssembly binaries and
+// copies other assets into the build/ folder.
 func Build() {
 	wd, _ := os.Getwd()
 	gulog.Info("Starting the Build Process")
@@ -46,8 +47,9 @@ func Build() {
 
 }
 
-// loop through folder and paths and create folder and wasm files to build
-// src what to scan and dst is what to create or where to create
+// createBuildFolders recursively walks the source directory tree.
+// It creates matching directories under dst, copies non-Go files, and
+// builds WebAssembly outputs for directories containing main.go.
 func createBuildFolders(src, dst string) error {
 	entries, err := os.ReadDir(src)
 	if err != nil {
@@ -111,6 +113,7 @@ func createBuildFolders(src, dst string) error {
 	return nil
 }
 
+// copyFile copies a single file from src to dst preserving file mode.
 func copyFile(src, dst string) error {
 	in, err := os.Open(src)
 	if err != nil {
@@ -133,11 +136,9 @@ func copyFile(src, dst string) error {
 	return err
 }
 
-// this function will build wasm GOOS=js GOARCH=wasm go build -o main.wasm in src
-//
-//	in the destination directory
+// BuildWasm compiles the Go package in src to WebAssembly and writes the
+// output binary as main.wasm into dst.
 func BuildWasm(src, dst string) error {
-	// Ensure the destination exists.
 	gulog.Info("Building Wasm----\nSrc: %s\ndst: %s", src, dst)
 
 	out := filepath.Join(dst, "main.wasm")
