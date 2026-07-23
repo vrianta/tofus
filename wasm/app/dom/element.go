@@ -62,13 +62,13 @@ func appendStyleRules(css string) {
 
 func addPseudoRules(className string, ctx style.Context) {
 	if ctx.OnHover != "" {
-		appendStyleRules(fmt.Sprintf(".%s:hover{%s}", className, ctx.OnHover.String()))
+		appendStyleRules(fmt.Sprintf(".%s:hover{%s}", className, string(ctx.OnHover)))
 	}
 	if ctx.OnActive != "" {
-		appendStyleRules(fmt.Sprintf(".%s:active{%s}", className, ctx.OnActive.String()))
+		appendStyleRules(fmt.Sprintf(".%s:active{%s}", className, string(ctx.OnActive)))
 	}
 	if ctx.OnFocus != "" {
-		appendStyleRules(fmt.Sprintf(".%s:focus{%s}", className, ctx.OnFocus.String()))
+		appendStyleRules(fmt.Sprintf(".%s:focus{%s}", className, string(ctx.OnFocus)))
 	}
 	if ctx.Disabled != nil {
 		appendStyleRules(fmt.Sprintf(".%s:disabled{%s}", className, ctx.Disabled.String()))
