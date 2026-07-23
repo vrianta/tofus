@@ -130,6 +130,6 @@ var ObjectFits = struct {
 	ScaleDown: "scale-down",
 }
 
-func (f FontWeight) String() string {
+func (f FontWeight) string() string {
 	return strconv.Itoa(int(f))
 }

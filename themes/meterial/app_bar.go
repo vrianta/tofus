@@ -45,13 +45,14 @@ func AppBar(
 				style.Sizes.Px(1),
 				style.Colors.RGBA(0, 0, 0, 0.08),
 			),
-			BoxShadow: style.Shadow(
-				style.Sizes.Px(0),
-				style.Sizes.Px(1),
-				style.Sizes.Px(3),
-				style.Sizes.Px(0),
-				style.Colors.RGBA(0, 0, 0, 0.08),
-			),
+			Shadow: style.Shadow{
+				Inset:  false,
+				X:      style.Sizes.Px(0),
+				Y:      style.Sizes.Px(1),
+				Blur:   style.Sizes.Px(3),
+				Spread: style.Sizes.Px(0),
+				Color:  style.Colors.RGBA(0, 0, 0, 0.08),
+			},
 		},
 		Child: layout.Row{
 			Gap:      style.Sizes.Px(12),

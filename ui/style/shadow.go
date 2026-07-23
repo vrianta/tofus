@@ -2,7 +2,8 @@ package style
 
 import "fmt"
 
-type BoxShadow struct {
+type Shadow struct {
+	Inset  bool
 	X      Size
 	Y      Size
 	Blur   Size
@@ -10,14 +11,18 @@ type BoxShadow struct {
 	Color  Color
 }
 
-func Shadow(
+type shadows struct{}
+
+var Shadows shadows
+
+func (shadows) Box(
 	x Size,
 	y Size,
 	blur Size,
 	spread Size,
 	color Color,
-) BoxShadow {
-	return BoxShadow{
+) Shadow {
+	return Shadow{
 		X:      x,
 		Y:      y,
 		Blur:   blur,
@@ -26,7 +31,25 @@ func Shadow(
 	}
 }
 
-func (s BoxShadow) String() string {
+func (shadows) None() Shadow {
+	return Shadow{}
+}
+
+func (shadows) Inset(
+	x, y, blur, spread Size,
+	color Color,
+) Shadow {
+	return Shadow{
+		Inset:  true,
+		X:      x,
+		Y:      y,
+		Blur:   blur,
+		Spread: spread,
+		Color:  color,
+	}
+}
+
+func (s Shadow) string() string {
 	if s.X == "" &&
 		s.Y == "" &&
 		s.Blur == "" &&
@@ -35,12 +58,18 @@ func (s BoxShadow) String() string {
 		return ""
 	}
 
+	prefix := ""
+	if s.Inset {
+		prefix = "inset "
+	}
+
 	return fmt.Sprintf(
-		"%s %s %s %s %s",
-		s.X.String(),
-		s.Y.String(),
-		s.Blur.String(),
-		s.Spread.String(),
+		"%s%s %s %s %s %s",
+		prefix,
+		s.X.string(),
+		s.Y.string(),
+		s.Blur.string(),
+		s.Spread.string(),
 		s.Color.string(),
 	)
 }

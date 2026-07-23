@@ -24,7 +24,7 @@ func (r Row) Render() dom.Element {
 	}
 
 	// Force row layout
-	r.Style.Display = style.DisplaysType.Flex
+	r.Style.Display = style.Displays.Flex
 	r.Style.FlexDirection = style.FlexDirections.Row
 
 	// Apply gap if provided

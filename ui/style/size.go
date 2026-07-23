@@ -42,6 +42,6 @@ func (s *sizes) Vh(v float64) Size {
 	return Size(fmt.Sprintf("%.2fvh", v))
 }
 
-func (s Size) String() string {
+func (s Size) string() string {
 	return string(s)
 }

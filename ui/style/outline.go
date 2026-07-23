@@ -8,7 +8,7 @@ type Outline struct {
 	Color Color
 }
 
-func (o Outline) String() string {
+func (o Outline) string() string {
 	if o.Style == "" {
 		return ""
 	}
@@ -18,7 +18,7 @@ func (o Outline) String() string {
 	}
 
 	return fmt.Sprintf("%s %s %s",
-		o.Width.String(),
+		o.Width.string(),
 		o.Style,
 		o.Color.string(),
 	)
@@ -39,5 +39,36 @@ func (outlines) Solid(width Size, color Color) Outline {
 func (outlines) None() Outline {
 	return Outline{
 		Style: "none",
+	}
+}
+func (outlines) Dashed(width Size, color Color) Outline {
+	return Outline{
+		Width: width,
+		Style: "dashed",
+		Color: color,
+	}
+}
+
+func (outlines) Dotted(width Size, color Color) Outline {
+	return Outline{
+		Width: width,
+		Style: "dotted",
+		Color: color,
+	}
+}
+
+func (outlines) Double(width Size, color Color) Outline {
+	return Outline{
+		Width: width,
+		Style: "double",
+		Color: color,
+	}
+}
+
+func (outlines) Custom(style string, width Size, color Color) Outline {
+	return Outline{
+		Width: width,
+		Style: style,
+		Color: color,
 	}
 }

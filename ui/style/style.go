@@ -49,8 +49,8 @@ type Context struct {
 	TextAlign  TextAlign
 
 	// Effects
-	Opacity   float64
-	BoxShadow BoxShadow
+	Opacity float64
+	Shadow  Shadow
 
 	// Overflow
 	Overflow Overflow
@@ -93,17 +93,17 @@ func (c Context) String() string {
 	}
 
 	// Layout
-	add("width", c.Width.String())
-	add("height", c.Height.String())
-	add("min-width", c.MinWidth.String())
-	add("min-height", c.MinHeight.String())
-	add("max-width", c.MaxWidth.String())
-	add("max-height", c.MaxHeight.String())
+	add("width", c.Width.string())
+	add("height", c.Height.string())
+	add("min-width", c.MinWidth.string())
+	add("min-height", c.MinHeight.string())
+	add("max-width", c.MaxWidth.string())
+	add("max-height", c.MaxHeight.string())
 	add("box-sizing", c.BoxSize.string())
 
 	// Spacing
-	add("padding", c.Padding.String())
-	add("margin", c.Margin.String())
+	add("padding", c.Padding.string())
+	add("margin", c.Margin.string())
 
 	// Colors
 	add("background-color", c.BackgroundColor.string())
@@ -112,25 +112,25 @@ func (c Context) String() string {
 	// Border
 	add("border", c.Border.string())
 	add("border-radius", c.BorderRadius.string())
-	add("outline", c.Outline.String())
+	add("outline", c.Outline.string())
 
 	// Position
 	add("position", string(c.Position))
-	add("top", c.Top.String())
-	add("right", c.Right.String())
-	add("bottom", c.Bottom.String())
-	add("left", c.Left.String())
+	add("top", c.Top.string())
+	add("right", c.Right.string())
+	add("bottom", c.Bottom.string())
+	add("left", c.Left.string())
 
 	// Flex
 	add("display", c.Display.string())
 	add("flex-direction", string(c.FlexDirection))
 	add("justify-content", string(c.JustifyContent))
 	add("align-items", string(c.AlignItems))
-	add("gap", c.Gap.String())
+	add("gap", c.Gap.string())
 
 	// Typography
-	add("font-size", c.FontSize.String())
-	add("font-weight", c.FontWeight.String())
+	add("font-size", c.FontSize.string())
+	add("font-weight", c.FontWeight.string())
 	add("font-family", c.FontFamily)
 	add("text-align", string(c.TextAlign))
 
@@ -138,7 +138,7 @@ func (c Context) String() string {
 	if c.Opacity > 0 {
 		add("opacity", fmt.Sprintf("%g", c.Opacity))
 	}
-	add("box-shadow", c.BoxShadow.String())
+	add("box-shadow", c.Shadow.string())
 
 	// Overflow
 	add("overflow", string(c.Overflow))
@@ -181,7 +181,7 @@ func (c Context) String() string {
 	if c.Disabled != nil {
 		add("disabled", c.Disabled.String())
 	}
-	// add("", c.BackgroundColor.String())
+	// add("", c.BackgroundColor.string())
 
 	// Custom
 	for k, v := range c.Custom {

@@ -40,31 +40,31 @@ func (e EdgeInset) SetRight(v Size) EdgeInset {
 	return e
 }
 
-func (e EdgeInset) String() string {
+func (e EdgeInset) string() string {
 	if e.Top == e.Right && e.Top == e.Bottom && e.Top == e.Left {
-		return e.Top.String()
+		return e.Top.string()
 	}
 
 	if e.Top == e.Bottom && e.Right == e.Left {
 		return fmt.Sprintf("%s %s",
-			e.Top.String(),
-			e.Right.String(),
+			e.Top.string(),
+			e.Right.string(),
 		)
 	}
 
 	if e.Right == e.Left {
 		return fmt.Sprintf("%s %s %s",
-			e.Top.String(),
-			e.Right.String(),
-			e.Bottom.String(),
+			e.Top.string(),
+			e.Right.string(),
+			e.Bottom.string(),
 		)
 	}
 
 	return fmt.Sprintf("%s %s %s %s",
-		e.Top.String(),
-		e.Right.String(),
-		e.Bottom.String(),
-		e.Left.String(),
+		e.Top.string(),
+		e.Right.string(),
+		e.Bottom.string(),
+		e.Left.string(),
 	)
 }
 

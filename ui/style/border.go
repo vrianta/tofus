@@ -99,7 +99,7 @@ func (b Border) string() string {
 	}
 	return fmt.Sprintf(
 		"%s %s %s",
-		b.Width.String(),
+		b.Width.string(),
 		b.Style,
 		b.Color.string(),
 	)
@@ -170,7 +170,7 @@ func (b BorderRadius) string() string {
 	if b.TopLeft == b.TopRight &&
 		b.TopLeft == b.BottomRight &&
 		b.TopLeft == b.BottomLeft {
-		return b.TopLeft.String()
+		return b.TopLeft.string()
 	}
 
 	// top-left/bottom-right and top-right/bottom-left
@@ -178,16 +178,16 @@ func (b BorderRadius) string() string {
 		b.TopRight == b.BottomLeft {
 		return fmt.Sprintf(
 			"%s %s",
-			b.TopLeft.String(),
-			b.TopRight.String(),
+			b.TopLeft.string(),
+			b.TopRight.string(),
 		)
 	}
 
 	return fmt.Sprintf(
 		"%s %s %s %s",
-		b.TopLeft.String(),
-		b.TopRight.String(),
-		b.BottomRight.String(),
-		b.BottomLeft.String(),
+		b.TopLeft.string(),
+		b.TopRight.string(),
+		b.BottomRight.string(),
+		b.BottomLeft.string(),
 	)
 }

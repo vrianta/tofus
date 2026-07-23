@@ -23,7 +23,7 @@ func (c *Column) Render() dom.Element {
 	}
 
 	// Force column layout
-	c.Style.Display = style.DisplaysType.Flex
+	c.Style.Display = style.Displays.Flex
 	c.Style.FlexDirection = style.FlexDirections.Column
 
 	div.ApplyStyle(c.Style)

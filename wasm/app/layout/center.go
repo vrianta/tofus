@@ -25,7 +25,7 @@ func (c *Center) Render() dom.Element {
 	s := c.Style
 
 	if s.Display == "" {
-		s.Display = style.DisplaysType.Flex
+		s.Display = style.Displays.Flex
 	}
 
 	if s.Width == style.Sizes.None {
