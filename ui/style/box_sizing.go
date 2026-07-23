@@ -1,13 +1,27 @@
 package style
 
-type BoxSizing string
+type BoxSize string
 
-type boxSizings struct {
-	ContentBox BoxSizing
-	BorderBox  BoxSizing
+type boxSizes struct{}
+
+var BoxSizes boxSizes
+
+const (
+	boxSizingContent BoxSize = "content-box"
+	boxSizingBorder  BoxSize = "border-box"
+)
+
+func (boxSizes) Content() BoxSize {
+	return boxSizingContent
 }
 
-var BoxSizings = boxSizings{
-	ContentBox: "content-box",
-	BorderBox:  "border-box",
+func (boxSizes) Border() BoxSize {
+	return boxSizingBorder
+}
+
+func (b *BoxSize) string() string {
+	if b == nil {
+		return ""
+	}
+	return string(*b)
 }

@@ -13,7 +13,7 @@ type Context struct {
 	MinHeight Size
 	MaxWidth  Size
 	MaxHeight Size
-	BoxSizing BoxSizing
+	BoxSize   BoxSize
 
 	// Spacing
 	Padding EdgeInset
@@ -99,7 +99,7 @@ func (c Context) String() string {
 	add("min-height", c.MinHeight.String())
 	add("max-width", c.MaxWidth.String())
 	add("max-height", c.MaxHeight.String())
-	add("box-sizing", string(c.BoxSizing))
+	add("box-sizing", c.BoxSize.string())
 
 	// Spacing
 	add("padding", c.Padding.String())

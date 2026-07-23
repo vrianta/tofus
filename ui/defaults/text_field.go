@@ -31,7 +31,7 @@ func TextField() style.Context {
 
 		Outline: style.Outlines.None(),
 
-		BoxSizing: style.BoxSizings.BorderBox,
+		BoxSize: style.BoxSizes.Border(),
 
 		Transition: "border-color 0.2s ease, box-shadow 0.2s ease",
 	}
