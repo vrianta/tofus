@@ -7,7 +7,7 @@ import "github.com/vrianta/tofus/ui/style"
 
 func TextField() style.Context {
 	return style.Context{
-		Display: style.DisplaysType.Block,
+		Display: style.Displays.Block,
 		Width:   style.Sizes.Percent(100),
 		Height:  style.Sizes.Px(42),
 

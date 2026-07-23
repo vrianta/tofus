@@ -36,7 +36,7 @@ func AppBar(
 		Style: style.Context{
 			Width:           style.Sizes.Full,
 			Height:          style.Sizes.Px(64),
-			Display:         style.DisplaysType.Flex,
+			Display:         style.Displays.Flex,
 			AlignItems:      style.AlignItemsList.Center,
 			BackgroundColor: style.Colors.White(),
 			Padding: style.EdgeInset{}.

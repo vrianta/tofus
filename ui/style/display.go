@@ -12,7 +12,7 @@ type displays struct {
 	None        Display
 }
 
-var DisplaysType = displays{
+var Displays = displays{
 	Block:       "block",
 	Inline:      "inline",
 	InlineBlock: "inline-block",
@@ -22,6 +22,6 @@ var DisplaysType = displays{
 	None:        "none",
 }
 
-func (d Display) String() string {
+func (d Display) string() string {
 	return string(d)
 }

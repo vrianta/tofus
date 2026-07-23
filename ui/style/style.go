@@ -122,7 +122,7 @@ func (c Context) String() string {
 	add("left", c.Left.String())
 
 	// Flex
-	add("display", c.Display.String())
+	add("display", c.Display.string())
 	add("flex-direction", string(c.FlexDirection))
 	add("justify-content", string(c.JustifyContent))
 	add("align-items", string(c.AlignItems))

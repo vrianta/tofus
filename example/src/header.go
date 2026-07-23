@@ -36,7 +36,7 @@ var loginButton = &widgets.Button{
 		app.Navigate("/login/")
 	},
 	Style: style.Context{
-		Display:        style.DisplaysType.InlineFlex,
+		Display:        style.Displays.InlineFlex,
 		AlignItems:     style.AlignItemsList.Center,
 		JustifyContent: style.JustifyContents.Center,
 
