@@ -44,8 +44,6 @@ func Run() {
 
 	routes := buildRoutes(runDir)
 
-	var buf bytes.Buffer
-
 	wd, _ := os.Getwd()
 	os.Chdir(runDir)
 	defer os.Chdir(wd)
@@ -54,12 +52,15 @@ func Run() {
 
 	for _, route := range routes {
 
-		wasm_file_path := filepath.Join(route, "main.wasm")
+		var buf bytes.Buffer
 
-		if route != "." {
-			route = "/" + route
-		} else { // means root and we need to remove / for root
-			route = ""
+		wasmFilePath := filepath.Join(route, "main.wasm")
+
+		httpRoute := route
+		if httpRoute != "." {
+			httpRoute = "/" + httpRoute
+		} else {
+			httpRoute = ""
 		}
 
 		tmpl, err := template.New(route).Parse(string(indexHtml))
@@ -68,7 +69,7 @@ func Run() {
 			continue
 		}
 		err = tmpl.Execute(&buf, map[string]any{
-			"wasm_url": route + "/main.wasm/",
+			"wasm_url": httpRoute + "/main.wasm/",
 		})
 		if err != nil {
 			gulog.Error("Failed to execute template: %s\nError: %s", route, err.Error())
@@ -77,28 +78,24 @@ func Run() {
 
 		output := buf.String()
 
-		// http.HandleFunc(route, func(w http.ResponseWriter, r *http.Request) {
-		// 	http.Redirect(w, r, route+"/", http.StatusMovedPermanently)
-		// })
-
-		// // creating route for wasmfile for the route
-		// http.HandleFunc(route+"/main.wasm", func(w http.ResponseWriter, r *http.Request) {
-		// 	http.Redirect(w, r, route+"/main.wasm/", http.StatusMovedPermanently)
-		// })
-
-		if wasm, err := os.ReadFile(wasm_file_path); err == nil {
-			http.HandleFunc(route+"/", func(w http.ResponseWriter, r *http.Request) {
-				w.Write([]byte(output))
-			})
-			http.HandleFunc(route+"/main.wasm/", func(w http.ResponseWriter, r *http.Request) {
-				w.Write(wasm)
-			})
-		} else {
-			gulog.Error("Failed to Read the Wasm Code: %s", wasm_file_path)
+		wasm, err := os.ReadFile(wasmFilePath)
+		if err != nil {
 			continue
 		}
 
-		gulog.Debug("Created Route for %s", route+"/")
+		html := output
+		wasmData := string(wasm)
+		routePath := httpRoute
+
+		http.HandleFunc(routePath+"/", func(w http.ResponseWriter, r *http.Request) {
+			w.Write([]byte(html))
+		})
+
+		http.HandleFunc(routePath+"/main.wasm/", func(w http.ResponseWriter, r *http.Request) {
+			w.Write([]byte(wasmData))
+		})
+
+		gulog.Debug("Created Route for %s", httpRoute+"/")
 	}
 	gulog.Info("Startinng the server http://localhost:8080")
 
