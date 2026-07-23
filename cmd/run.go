@@ -143,21 +143,20 @@ func buildRoutes(src string) []string {
 	}
 	if hasOtherFiles {
 
-		// create http storage server for the last route recorded
-		var route string
-		if src == "." {
-			route = ""
-		} else {
-			route = "/" + src
+		prefix := "/"
+		if src != "." {
+			prefix = "/" + filepath.ToSlash(src) + "/"
 		}
+
 		http.Handle(
-			route,
+			prefix,
 			http.StripPrefix(
-				route,
-				http.FileServer(http.Dir(route)),
+				prefix,
+				http.FileServer(http.Dir(src)),
 			),
 		)
-		gulog.Debug("Created File Server for %s", route)
+
+		gulog.Debug("Created File Server for %s -> %s", prefix, src)
 
 	}
 
