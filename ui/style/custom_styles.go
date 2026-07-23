@@ -1,7 +1,7 @@
 package style
 
 var CardStyle = Context{
-	BackgroundColor: Colors.White,
+	BackgroundColor: Colors.White(),
 	Padding:         EdgeInsets.SetAll(Sizes.Px(16)),
 	BorderRadius: BorderRadius{
 		TopLeft:     Sizes.Px(12),

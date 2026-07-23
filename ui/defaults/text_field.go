@@ -16,7 +16,7 @@ func TextField() style.Context {
 			Right: style.Sizes.Px(12),
 		},
 
-		BackgroundColor: style.Colors.White,
+		BackgroundColor: style.Colors.White(),
 		Color:           style.Colors.Hex("#111827"),
 
 		FontSize:   style.Sizes.Px(14),

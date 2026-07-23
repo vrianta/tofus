@@ -16,7 +16,7 @@ var Borders borders
 var borderNone = Border{
 	Width: "0px",
 	Style: "none",
-	Color: Colors.Black,
+	Color: Colors.Black(),
 }
 
 func (borders) None() Border {
@@ -95,13 +95,13 @@ func (b Border) string() string {
 		b.Style = "solid"
 	}
 	if b.Color == "" {
-		b.Color = Colors.Black
+		b.Color = Colors.Black()
 	}
 	return fmt.Sprintf(
 		"%s %s %s",
 		b.Width.String(),
 		b.Style,
-		b.Color.String(),
+		b.Color.string(),
 	)
 }
 
@@ -165,7 +165,7 @@ func (b BorderRadius) SetRight(v Size) BorderRadius {
 	b.BottomRight = v
 	return b
 }
-func (b BorderRadius) String() string {
+func (b BorderRadius) string() string {
 	// all sides equal
 	if b.TopLeft == b.TopRight &&
 		b.TopLeft == b.BottomRight &&

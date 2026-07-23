@@ -35,7 +35,7 @@ func TextField(label string) app.Widget {
 						Width:  style.Sizes.Percent(100),
 						Height: style.Sizes.Px(56),
 
-						BackgroundColor: style.Colors.White,
+						BackgroundColor: style.Colors.White(),
 
 						Border: style.Border{
 							Width: style.Sizes.Px(1),

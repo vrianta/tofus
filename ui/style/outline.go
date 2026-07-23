@@ -20,7 +20,7 @@ func (o Outline) String() string {
 	return fmt.Sprintf("%s %s %s",
 		o.Width.String(),
 		o.Style,
-		o.Color.String(),
+		o.Color.string(),
 	)
 }
 

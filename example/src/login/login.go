@@ -34,7 +34,7 @@ func Login() app.Widget {
 						Style: style.Context{
 							FontSize:   style.Sizes.Px(32),
 							FontWeight: style.FontWeights.Bold,
-							Color:      style.Colors.White,
+							Color:      style.Colors.White(),
 						},
 					},
 

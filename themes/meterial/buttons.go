@@ -21,7 +21,7 @@ func IconButton(
 			Padding:         style.EdgeInset{}.SetAll(style.Sizes.Px(8)),
 			Border:          style.Borders.None(),
 			BorderRadius:    style.BorderRadius{}.SetAll(style.Sizes.Percent(50)),
-			BackgroundColor: style.Colors.Transparent,
+			BackgroundColor: style.Colors.Transparent(),
 		},
 		Child:   icon,
 		OnClick: onClick,

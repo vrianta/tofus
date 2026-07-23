@@ -41,7 +41,7 @@ var loginButton = &widgets.Button{
 		JustifyContent: style.JustifyContents.Center,
 
 		BackgroundColor: style.Colors.Hex("#2563EB"),
-		Color:           style.Colors.White,
+		Color:           style.Colors.White(),
 
 		Padding: style.EdgeInsets.
 			SetVertical(style.Sizes.Px(10)).

@@ -106,12 +106,12 @@ func (c Context) String() string {
 	add("margin", c.Margin.String())
 
 	// Colors
-	add("background-color", c.BackgroundColor.String())
-	add("color", c.Color.String())
+	add("background-color", c.BackgroundColor.string())
+	add("color", c.Color.string())
 
 	// Border
 	add("border", c.Border.string())
-	add("border-radius", c.BorderRadius.String())
+	add("border-radius", c.BorderRadius.string())
 	add("outline", c.Outline.String())
 
 	// Position
@@ -170,13 +170,13 @@ func (c Context) String() string {
 
 	// onHover, onActive, onFocus, disabled
 	if c.OnHover != "" {
-		add("on-hover", c.OnHover.String())
+		add("on-hover", c.OnHover.string())
 	}
 	if c.OnActive != "" {
-		add("on-active", c.OnActive.String())
+		add("on-active", c.OnActive.string())
 	}
 	if c.OnFocus != "" {
-		add("on-focus", c.OnFocus.String())
+		add("on-focus", c.OnFocus.string())
 	}
 	if c.Disabled != nil {
 		add("disabled", c.Disabled.String())

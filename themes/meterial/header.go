@@ -16,7 +16,7 @@ func Header(title string, search bool, actions ...app.Widget) app.Widget {
 			Value: title,
 			Style: style.Context{
 				Width:      style.Sizes.Auto,
-				Color:      style.Colors.White,
+				Color:      style.Colors.White(),
 				FontSize:   style.Sizes.Px(22),
 				FontWeight: style.FontWeights.Bold,
 			},

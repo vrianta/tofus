@@ -41,6 +41,6 @@ func (s BoxShadow) String() string {
 		s.Y.String(),
 		s.Blur.String(),
 		s.Spread.String(),
-		s.Color.String(),
+		s.Color.string(),
 	)
 }
