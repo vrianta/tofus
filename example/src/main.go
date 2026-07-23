@@ -4,6 +4,7 @@
 package main
 
 import (
+	"github.com/vrianta/tofus/themes/meterial"
 	"github.com/vrianta/tofus/ui/style"
 	"github.com/vrianta/tofus/wasm/app"
 	"github.com/vrianta/tofus/wasm/app/layout"
@@ -17,7 +18,7 @@ var App = app.Context{
 	},
 	Body: &app.Body{
 		Id:     "body",
-		Header: &header,
+		Header: meterial.Header("Eample App", true),
 		Children: []app.Widget{
 			&layout.Column{
 				Id: "main-column",
