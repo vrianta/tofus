@@ -22,7 +22,7 @@ func TextField() style.Context {
 		FontSize:   style.Sizes.Px(14),
 		FontWeight: style.FontWeights.Normal,
 
-		Border: style.Border{}.Solid(
+		Border: style.Borders.Solid(
 			style.Sizes.Px(1),
 			style.Colors.Hex("#D1D5DB"),
 		),

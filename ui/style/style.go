@@ -110,7 +110,7 @@ func (c Context) String() string {
 	add("color", c.Color.String())
 
 	// Border
-	add("border", c.Border.String())
+	add("border", c.Border.string())
 	add("border-radius", c.BorderRadius.String())
 	add("outline", c.Outline.String())
 

@@ -47,7 +47,7 @@ var loginButton = &widgets.Button{
 			SetVertical(style.Sizes.Px(10)).
 			SetHorizontal(style.Sizes.Px(18)),
 
-		Border:       style.Border{}.None(),
+		Border:       style.Borders.None(),
 		BorderRadius: style.BorderRadius{}.SetAll(style.Sizes.Px(8)),
 
 		FontSize:   style.Sizes.Px(14),

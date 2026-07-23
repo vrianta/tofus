@@ -19,7 +19,7 @@ func IconButton(
 			Width:           style.Sizes.Px(40),
 			Height:          style.Sizes.Px(40),
 			Padding:         style.EdgeInset{}.SetAll(style.Sizes.Px(8)),
-			Border:          style.Border{}.None(),
+			Border:          style.Borders.None(),
 			BorderRadius:    style.BorderRadius{}.SetAll(style.Sizes.Percent(50)),
 			BackgroundColor: style.Colors.Transparent,
 		},

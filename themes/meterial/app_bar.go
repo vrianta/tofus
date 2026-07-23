@@ -41,7 +41,7 @@ func AppBar(
 			BackgroundColor: style.Colors.White,
 			Padding: style.EdgeInset{}.
 				SetHorizontal(style.Sizes.Px(16)),
-			Border: style.Border{}.Solid(
+			Border: style.Borders.Solid(
 				style.Sizes.Px(1),
 				style.Colors.RGBA(0, 0, 0, 0.08),
 			),
