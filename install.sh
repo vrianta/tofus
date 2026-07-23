@@ -6,6 +6,7 @@
 
 echo "Building Tofus..."
 go mod tidy
+go mod vendor
 go build -o tofus
 echo "Installing Tofus ..."
 sudo cp tofus /usr/local/bin/tofus
