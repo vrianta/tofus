@@ -13,6 +13,7 @@ type Button struct {
 	Text    string
 	Style   style.Context
 	OnClick func(dom.Element)
+	OnHover func(dom.Element)
 }
 
 func (b Button) Render() dom.Element {
@@ -27,6 +28,10 @@ func (b Button) Render() dom.Element {
 
 	if b.OnClick != nil {
 		button.OnClick(b.OnClick)
+	}
+
+	if b.OnHover != nil {
+		button.OnHover(b.OnHover)
 	}
 
 	return button
