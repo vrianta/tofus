@@ -49,14 +49,14 @@ func (t *TextField) Render() dom.Element {
 	input.ApplyStyle(t.Style)
 
 	if t.OnInput != nil {
-		input.OnInput(func(value string) {
+		input.OnInput(func(e dom.Element, value string) {
 			t.Value = value
 			t.OnInput(value)
 		})
 	}
 
 	if t.OnChange != nil {
-		input.OnChange(func(value string) {
+		input.OnChange(func(e dom.Element, value string) {
 			t.Value = value
 			t.OnChange(value)
 		})

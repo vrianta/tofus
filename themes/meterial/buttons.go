@@ -21,10 +21,10 @@ func IconButton(
 			Border:          style.Border{}.None(),
 			BorderRadius:    style.BorderRadius{}.SetAll(style.Sizes.Percent(50)),
 			BackgroundColor: style.Colors.Transparent,
-			HoverColor:      style.Colors.Hex("#E0E0E0"),
-			PressedColor:    style.Colors.Hex("#D5D5D5"),
-			OnClick:         onClick,
+			// HoverColor:      style.Colors.Hex("#E0E0E0"),
+			// PressedColor:    style.Colors.Hex("#D5D5D5"),
+			// OnClick:         onClick,
 		},
-		icon,
+		// icon,
 	}
 }

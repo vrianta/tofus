@@ -12,7 +12,7 @@ type Button struct {
 	Id      string
 	Text    string
 	Style   style.Context
-	OnClick func()
+	OnClick func(dom.Element)
 }
 
 func (b Button) Render() dom.Element {

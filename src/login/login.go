@@ -6,6 +6,7 @@ package main
 import (
 	"github.com/vrianta/tofus/ui/style"
 	"github.com/vrianta/tofus/wasm/app"
+	"github.com/vrianta/tofus/wasm/app/dom"
 	"github.com/vrianta/tofus/wasm/app/layout"
 	"github.com/vrianta/tofus/wasm/app/widgets"
 )
@@ -73,7 +74,7 @@ func Login() app.Widget {
 
 					&widgets.Button{
 						Text: "Login",
-						OnClick: func() {
+						OnClick: func(e dom.Element) {
 							app.Log("Login clicked")
 						},
 					},
