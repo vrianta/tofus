@@ -1,5 +1,5 @@
 package ui
 
 type Widget interface {
-	Build(ctx Context) Element
+	render(ctx Context) Element
 }

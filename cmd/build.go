@@ -15,8 +15,7 @@ type Routes struct {
 	route string // http route
 }
 
-var src_folder_path = filepath.Join(".", "src")
-var ViewFolder string = "views"
+var view_folder_path = filepath.Join(".", "views")
 
 // Build scans the local src/ directory and creates the build/ output tree.
 // It compiles directories containing main.go into WebAssembly binaries and
@@ -34,12 +33,12 @@ func Build() {
 		return
 	}
 
-	if _, err := os.ReadDir(src_folder_path); err != nil && os.IsExist(err) {
-		gulog.Error("Folder Structure is wrong src folder not present")
+	if _, err := os.ReadDir(view_folder_path); err != nil && os.IsExist(err) {
+		gulog.Error("Folder Structure is wrong views folder not present")
 		return
 	}
-	gulog.Info("src folder found")
-	err := createBuildFolders(src_folder_path, buildDir)
+	gulog.Info("views folder found")
+	err := createBuildFolders(view_folder_path, buildDir)
 	if err != nil {
 		gulog.Error("%s", err.Error())
 		return

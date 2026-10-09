@@ -141,3 +141,8 @@ Static file servers:
 - If `src/` is missing or empty, the build produces no output.
 - If a folder contains no `main.go` and only static files, those files are still copied as static assets.
 - If a route is not created, verify that `main.go` exists in the expected `src/` folder.
+
+
+# Next Sections
+
+microservices will mostly contain small small http server applications, after build they can be utilised, as seperate seperate micro services, and on testing all of them can be used as a standalone server using tofus binary
