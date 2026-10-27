@@ -3,7 +3,8 @@ package cmd
 
 import (
 	"bytes"
-	_ "embed"
+	"embed"
+	"io/fs"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -25,6 +26,9 @@ var indexHtml []byte
 //go:embed ui_templates/wasm_exec.js
 var wasmJs []byte
 
+//go:embed ui_templates/pico-css/*.css
+var picoCSS embed.FS
+
 var runDir = "."
 
 // Run starts the Tofus HTTP server for the generated build/ output.
@@ -38,6 +42,10 @@ func Run() {
 	http.HandleFunc("/wasm_exec.js/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write(wasmJs)
 	})
+
+	if picoRoot, err := fs.Sub(picoCSS, "ui_templates/pico-css"); err == nil {
+		http.Handle("/pico-css/", http.StripPrefix("/pico-css/", http.FileServer(http.FS(picoRoot))))
+	}
 
 	routes := buildRoutes(runDir)
 
