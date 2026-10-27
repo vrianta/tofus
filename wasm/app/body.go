@@ -9,7 +9,7 @@ import (
 )
 
 type Body struct {
-	Style    style.Context
+	Style    *style.Context
 	Id       string
 	Header   Widget
 	Children []Widget
@@ -24,7 +24,9 @@ func (b *Body) render() {
 		body.SetId(b.Id)
 	}
 
-	body.ApplyStyle(b.Style)
+	if b.Style != nil {
+		body.ApplyStyle(b.Style)
+	}
 	// render header
 	if b.Header != nil {
 		body.AppendChild(b.Header.Render())

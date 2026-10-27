@@ -15,7 +15,7 @@ type TextField struct {
 	Name        string
 	Type        string
 
-	Style style.Context
+	Style *style.Context
 
 	OnChange func(string)
 	OnInput  func(string)
@@ -46,7 +46,9 @@ func (t *TextField) Render() dom.Element {
 		input.SetAttribute("value", t.Value)
 	}
 
-	input.ApplyStyle(t.Style)
+	if t.Style != nil {
+		input.ApplyStyle(t.Style)
+	}
 
 	if t.OnInput != nil {
 		input.OnInput(func(e dom.Element, value string) {

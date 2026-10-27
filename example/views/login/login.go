@@ -20,7 +20,7 @@ func Login() app.Widget {
 			BackgroundColor: style.Colors.Hex("#111827"),
 		},
 		Child: &layout.Container{
-			Style: style.Context{
+			Style: &style.Context{
 				Width:           style.Sizes.Px(420),
 				BackgroundColor: style.Colors.Hex("#1F2937"),
 				BorderRadius:    style.BorderRadius{}.SetAll(style.Sizes.Px(8)),
@@ -31,7 +31,7 @@ func Login() app.Widget {
 
 					&widgets.Text{
 						Value: "Welcome Back",
-						Style: style.Context{
+						Style: &style.Context{
 							FontSize:   style.Sizes.Px(32),
 							FontWeight: style.FontWeights.Bold,
 							Color:      style.Colors.White(),
@@ -40,14 +40,14 @@ func Login() app.Widget {
 
 					&widgets.Text{
 						Value: "Sign in to continue",
-						Style: style.Context{
+						Style: &style.Context{
 							Color:  style.Colors.Hex("#9CA3AF"),
 							Margin: style.EdgeInsets.SetTop(style.Sizes.Px(8)),
 						},
 					},
 
 					&layout.Spacer{
-						Style: style.Context{
+						Style: &style.Context{
 							Height: style.Sizes.Px(24),
 						},
 					},
@@ -57,7 +57,7 @@ func Login() app.Widget {
 					},
 
 					&layout.Spacer{
-						Style: style.Context{
+						Style: &style.Context{
 							Height: style.Sizes.Px(16),
 						},
 					},
@@ -67,7 +67,7 @@ func Login() app.Widget {
 					},
 
 					&layout.Spacer{
-						Style: style.Context{
+						Style: &style.Context{
 							Height: style.Sizes.Px(24),
 						},
 					},

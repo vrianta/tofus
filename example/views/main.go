@@ -34,7 +34,7 @@ var App = app.Context{
 			AppBar,
 			&layout.Column{
 				Id: "main-column",
-				Style: style.Context{
+				Style: &style.Context{
 					Width:  style.Sizes.Percent(100),
 					Height: style.Sizes.Percent(100),
 					Gap:    style.Sizes.Px(12),
@@ -49,7 +49,7 @@ var App = app.Context{
 				},
 			},
 		},
-		Style: style.Context{
+		Style: &style.Context{
 			Width:           style.Sizes.Percent(100),
 			Height:          style.Sizes.Vh(100),
 			BackgroundColor: style.Colors.Hex("#7b7b7b"),

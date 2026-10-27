@@ -11,7 +11,7 @@ import (
 
 type Column struct {
 	Id       string
-	Style    style.Context
+	Style    *style.Context
 	Children []app.Widget
 }
 
@@ -26,7 +26,9 @@ func (c *Column) Render() dom.Element {
 	c.Style.Display = style.Displays.Flex
 	c.Style.FlexDirection = style.FlexDirections.Column
 
-	div.ApplyStyle(c.Style)
+	if c.Style != nil {
+		div.ApplyStyle(c.Style)
+	}
 
 	for _, child := range c.Children {
 		div.AppendChild(child.Render())

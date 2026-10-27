@@ -22,7 +22,7 @@ func AppBar(
 
 		builder.If(title != "" && leading == nil, &widgets.Text{
 			Value: title,
-			Style: style.Context{
+			Style: &style.Context{
 				FontSize:   style.Sizes.Px(22),
 				FontWeight: style.FontWeights.SemiBold,
 			},
@@ -33,7 +33,7 @@ func AppBar(
 	children = append(children, actions...)
 
 	return &layout.Container{
-		Style: style.Context{
+		Style: &style.Context{
 			Width:           style.Sizes.Full,
 			Height:          style.Sizes.Px(64),
 			Display:         style.Displays.Flex,

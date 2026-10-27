@@ -12,7 +12,7 @@ import (
 type Button struct {
 	Id      string
 	Text    string
-	Style   style.Context
+	Style   *style.Context
 	Child   app.Widget
 	OnClick func(dom.Element)
 	OnHover func(dom.Element)
@@ -26,7 +26,9 @@ func (b Button) Render() dom.Element {
 	}
 
 	button.SetText(b.Text)
-	button.ApplyStyle(b.Style)
+	if b.Style != nil {
+		button.ApplyStyle(b.Style)
+	}
 
 	if b.Child != nil {
 		button.AppendChild(b.Child.Render())

@@ -10,7 +10,7 @@ import (
 
 type Spacer struct {
 	Id    string
-	Style style.Context
+	Style *style.Context
 }
 
 func (s Spacer) Render() dom.Element {
@@ -23,7 +23,9 @@ func (s Spacer) Render() dom.Element {
 	// Force the spacer to grow
 	s.Style.FlexGrow = 1
 
-	div.ApplyStyle(s.Style)
+	if s.Style != nil {
+		div.ApplyStyle(s.Style)
+	}
 
 	return div
 }

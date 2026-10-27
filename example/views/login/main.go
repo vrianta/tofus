@@ -18,7 +18,7 @@ var App = app.Context{
 		Children: []app.Widget{
 			Login(),
 		},
-		Style: style.Context{
+		Style: &style.Context{
 			Width:           style.Sizes.Percent(100),
 			Height:          style.Sizes.Vh(100),
 			BackgroundColor: style.Colors.Hex("#7b7b7b"),

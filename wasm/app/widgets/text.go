@@ -11,7 +11,7 @@ import (
 type Text struct {
 	Id    string
 	Value string
-	Style style.Context
+	Style *style.Context
 }
 
 // var _ ui.Widget = (*Text)(nil)
@@ -24,7 +24,9 @@ func (t *Text) Render() dom.Element {
 	}
 
 	element.SetText(t.Value)
-	element.ApplyStyle(t.Style)
+	if t.Style != nil {
+		element.ApplyStyle(t.Style)
+	}
 
 	return element
 }

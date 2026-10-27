@@ -61,7 +61,7 @@ func appendStyleRules(css string) {
 	styleEl.Set("textContent", strings.TrimSpace(styleEl.Get("textContent").String()+"\n"+css))
 }
 
-func addPseudoRules(className string, ctx style.Context) {
+func addPseudoRules(className string, ctx *style.Context) {
 	if ctx.OnHover != "" {
 		appendStyleRules(fmt.Sprintf(".%s:hover{%s}", className, string(ctx.OnHover)))
 	}
@@ -84,7 +84,7 @@ func (e *Element) AddClass(className string) {
 // ApplyStyle applies a style context to the element. If the context contains
 // pseudo-state styles such as Hover, Active, Focus, or Disabled, a generated
 // CSS class is created and the pseudo rules are appended to the shared stylesheet.
-func (e *Element) ApplyStyle(ctx style.Context) {
+func (e *Element) ApplyStyle(ctx *style.Context) {
 	if ctx.OnHover == "" && ctx.OnActive == "" && ctx.OnFocus == "" { //&& ctx.Disabled == nil {
 		e.SetStyle(ctx)
 		return
@@ -106,7 +106,7 @@ func (e *Element) SetId(id string) {
 }
 
 // SetStyle sets the element's inline CSS text from the provided style context.
-func (e *Element) SetStyle(style style.Context) {
+func (e *Element) SetStyle(style *style.Context) {
 	e.Get("style").Set("cssText", render.Style(style))
 }
 

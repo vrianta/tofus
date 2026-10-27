@@ -9,7 +9,7 @@ import (
 
 // Render Style Context to HTML attributes
 
-func Style(c style.Context) string {
+func Style(c *style.Context) string {
 	var css []string
 
 	add := func(key, value string) {

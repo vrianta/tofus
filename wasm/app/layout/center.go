@@ -22,7 +22,7 @@ func (c *Center) Render() dom.Element {
 		div.SetId(c.Id)
 	}
 
-	s := c.Style
+	s := &c.Style
 
 	if s.Display == "" {
 		s.Display = style.Displays.Flex

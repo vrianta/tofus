@@ -11,7 +11,7 @@ import (
 
 type Container struct {
 	Id    string
-	Style style.Context
+	Style *style.Context
 	Child app.Widget
 }
 
@@ -27,7 +27,9 @@ func (c *Container) Render() dom.Element {
 		div.SetId(c.Id)
 	}
 
-	div.ApplyStyle(c.Style)
+	if c.Style != nil {
+		div.ApplyStyle(c.Style)
+	}
 
 	if c.Child != nil {
 		div.AppendChild(c.Child.Render())

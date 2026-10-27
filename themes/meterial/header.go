@@ -14,7 +14,7 @@ func Header(title string, search bool, actions ...app.Widget) app.Widget {
 	children := []app.Widget{
 		&widgets.Text{
 			Value: title,
-			Style: style.Context{
+			Style: &style.Context{
 				Width:      style.Sizes.Auto,
 				Color:      style.Colors.White(),
 				FontSize:   style.Sizes.Px(22),
@@ -37,7 +37,7 @@ func Header(title string, search bool, actions ...app.Widget) app.Widget {
 	children = append(children, actions...)
 
 	return &layout.Row{
-		Style: style.Context{
+		Style: &style.Context{
 			Width:           style.Sizes.Auto,
 			Height:          style.Sizes.Px(64),
 			BackgroundColor: style.Colors.Hex("#6750A4"),

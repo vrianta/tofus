@@ -15,7 +15,7 @@ func IconButton(
 	onClick func(dom.Element),
 ) app.Widget {
 	return widgets.Button{
-		Style: style.Context{
+		Style: &style.Context{
 			Width:           style.Sizes.Px(40),
 			Height:          style.Sizes.Px(40),
 			Padding:         style.EdgeInset{}.SetAll(style.Sizes.Px(8)),

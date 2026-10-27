@@ -14,7 +14,7 @@ import (
 var header = layout.Header{
 	Children: []app.Widget{
 		&layout.Row{
-			Style: style.Context{
+			Style: &style.Context{
 				Width:           style.Sizes.Percent(100),
 				Height:          style.Sizes.Px(64),
 				BackgroundColor: style.Colors.Hex("#e2e2e2"),
@@ -35,7 +35,7 @@ var loginButton = &widgets.Button{
 	OnClick: func(e dom.Element) {
 		app.Navigate("/login/")
 	},
-	Style: style.Context{
+	Style: &style.Context{
 		Display:        style.Displays.InlineFlex,
 		AlignItems:     style.AlignItemsList.Center,
 		JustifyContent: style.JustifyContents.Center,

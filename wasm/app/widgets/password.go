@@ -14,7 +14,7 @@ type PasswordField struct {
 	Placeholder string
 	Name        string
 
-	Style style.Context
+	Style *style.Context
 
 	OnInput  func(string)
 	OnChange func(string)

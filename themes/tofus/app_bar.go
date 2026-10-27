@@ -22,7 +22,7 @@ func AppBar(
 
 		builder.If(title != "" && leading == nil, &widgets.Text{
 			Value: title,
-			Style: style.Context{
+			Style: &style.Context{
 				FontSize:   style.Sizes.Px(22),
 				FontWeight: style.FontWeights.SemiBold,
 			},

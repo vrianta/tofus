@@ -12,18 +12,18 @@ import (
 
 func TextField(label string) app.Widget {
 	return &layout.Container{
-		Style: style.Context{
+		Style: &style.Context{
 			Width:    style.Sizes.Percent(100),
 			MaxWidth: style.Sizes.Px(420),
 		},
 		Child: &layout.Column{
-			Style: style.Context{
+			Style: &style.Context{
 				Gap: style.Sizes.Px(6),
 			},
 			Children: []app.Widget{
 				&widgets.Text{
 					Value: label,
-					Style: style.Context{
+					Style: &style.Context{
 						Color:      style.Colors.Hex("#6750A4"),
 						FontSize:   style.Sizes.Px(12),
 						FontWeight: style.FontWeights.Medium,
@@ -31,7 +31,7 @@ func TextField(label string) app.Widget {
 				},
 				&widgets.TextField{
 					Placeholder: "",
-					Style: style.Context{
+					Style: &style.Context{
 						Width:  style.Sizes.Percent(100),
 						Height: style.Sizes.Px(56),
 

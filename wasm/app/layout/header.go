@@ -11,7 +11,7 @@ import (
 
 type Header struct {
 	Id       string
-	Style    style.Context
+	Style    *style.Context
 	Children []app.Widget
 }
 
@@ -22,7 +22,9 @@ func (h *Header) Render() dom.Element {
 		header.SetId(h.Id)
 	}
 
-	header.ApplyStyle(h.Style)
+	if h.Style != nil {
+		header.ApplyStyle(h.Style)
+	}
 
 	for _, child := range h.Children {
 		header.AppendChild(child.Render())

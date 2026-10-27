@@ -11,7 +11,7 @@ import (
 
 type Row struct {
 	Id       string
-	Style    style.Context
+	Style    *style.Context
 	Gap      style.Size
 	Children []app.Widget
 }
@@ -32,7 +32,9 @@ func (r Row) Render() dom.Element {
 		r.Style.Gap = r.Gap
 	}
 
-	row.ApplyStyle(r.Style)
+	if r.Style != nil {
+		row.ApplyStyle(r.Style)
+	}
 
 	for _, child := range r.Children {
 		if child != nil {
