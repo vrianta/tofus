@@ -21,6 +21,21 @@ func SetDescription(des string) {
 	setMeta("description", des)
 }
 
+func SetLink(rel, href string) {
+	link := doc.Call(
+		"querySelector",
+		`link[rel="`+rel+`"]`,
+	)
+
+	if link.IsNull() || link.IsUndefined() {
+		link = doc.Call("createElement", "link")
+		link.Set("rel", rel)
+		head.Call("appendChild", link)
+	}
+
+	link.Set("href", href)
+}
+
 func SetKeywords(k []string) {
 	keywords := strings.Join(k, ",")
 	setMeta("keywords", keywords)

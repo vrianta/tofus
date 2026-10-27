@@ -4,7 +4,8 @@
 package main
 
 import (
-	"github.com/vrianta/tofus/themes/meterial"
+	"github.com/vrianta/tofus/themes/tofus"
+	"github.com/vrianta/tofus/ui/browser"
 	"github.com/vrianta/tofus/ui/style"
 	"github.com/vrianta/tofus/wasm/app"
 	"github.com/vrianta/tofus/wasm/app/layout"
@@ -12,13 +13,23 @@ import (
 )
 
 var App = app.Context{
-	Head: &app.Head{
-		Title:       "Test Application",
-		Description: "A Test Application to demostrate, how to use the wasm ui builder",
-	},
+	Head: tofus.Head(
+		"Example App",
+		"An example app built with Tofus UI.",
+		[]string{"tofus", "ui", "example"},
+		"/favicon.ico",
+		browser.UTF8,
+		browser.English,
+		[]browser.Link{
+			{
+				Rel:  "stylesheet",
+				Href: "https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap",
+			},
+		},
+	),
 	Body: &app.Body{
 		Id:     "body",
-		Header: meterial.Header("Eample App", true),
+		Header: tofus.Header("Eample App", true),
 		Children: []app.Widget{
 			AppBar,
 			&layout.Column{

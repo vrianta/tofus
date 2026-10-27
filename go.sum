@@ -1,4 +1,4 @@
-github.com/vrianta/gonfig v1.1.1 h1:S6X8MxH7eTOshv1/ANMPAGVc3dSvDDvRtinbwvxi7Ak=
-github.com/vrianta/gonfig v1.1.1/go.mod h1:pwOoWKBH4iqEz9LagQMO/EeFaF/23rKBeKq68kJGDo8=
-github.com/vrianta/gulog v1.0.1 h1:59JIwV397orHfsP+/FIQTtJZW7EyHlpMEpkufWzO1pI=
-github.com/vrianta/gulog v1.0.1/go.mod h1:4P9KGMqZI9K38BkwEpQtgRlQJhmdhuOyv3rZH5nmK1s=
+github.com/vrianta/gonfig v1.1.2 h1:MAzMjsNF4axGJaGtBLfCvoU2+k6m3unrOLnAX4/tyQg=
+github.com/vrianta/gonfig v1.1.2/go.mod h1:pwOoWKBH4iqEz9LagQMO/EeFaF/23rKBeKq68kJGDo8=
+github.com/vrianta/gulog v1.0.2 h1:Sp+Wa4T52mdm1HG6v6De3I9JG1qeSs1hsXXdbfQ2z3E=
+github.com/vrianta/gulog v1.0.2/go.mod h1:4P9KGMqZI9K38BkwEpQtgRlQJhmdhuOyv3rZH5nmK1s=

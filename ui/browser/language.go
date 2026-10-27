@@ -3,39 +3,39 @@ package browser
 type Language string
 
 const (
-	ldef     Language = ""
-	english  Language = "en"
-	spanish  Language = "es"
-	french   Language = "fr"
-	german   Language = "de"
-	hindi    Language = "hi"
-	japanese Language = "ja"
+	Ldef     Language = ""
+	English  Language = "en"
+	Spanish  Language = "es"
+	French   Language = "fr"
+	German   Language = "de"
+	Hindi    Language = "hi"
+	Japanese Language = "ja"
 )
 
 func (Language) ToEnglish() Language {
-	return english
+	return English
 }
 
 func (Language) ToSpanish() Language {
-	return spanish
+	return Spanish
 }
 
 func (Language) ToFrench() Language {
-	return french
+	return French
 }
 
 func (Language) ToGerman() Language {
-	return german
+	return German
 }
 
 func (Language) ToHindi() Language {
-	return hindi
+	return Hindi
 }
 
 func (Language) ToJapanese() Language {
-	return japanese
+	return Japanese
 }
 
 func SetLanguage() Language {
-	return ldef
+	return Ldef
 }

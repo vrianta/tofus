@@ -23,12 +23,15 @@ var Args = gonfig.New[struct {
 
 // main executes the selected Tofus command.
 func main() {
+
 	if Args.Version {
 		gulog.Info("Version - %s", Version)
 	}
+
 	if Args.Build {
 		cmd.Build()
 	}
+
 	if Args.Run {
 		cmd.Run()
 	}

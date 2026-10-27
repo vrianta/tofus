@@ -16,6 +16,7 @@ type Head struct {
 
 	Charset  browser.Charset
 	Language browser.Language
+	Link     []browser.Link
 	// Viewport Viewport
 }
 
@@ -37,6 +38,12 @@ func (h *Head) render() {
 	// meta tags
 	if h.Description != "" {
 		dom.SetDescription(h.Description)
+	}
+
+	for _, link := range h.Link {
+		if link.Rel != "" && link.Href != "" {
+			dom.SetLink(link.Rel, link.Href)
+		}
 	}
 
 	if len(h.Keywords) > 0 {

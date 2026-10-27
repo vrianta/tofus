@@ -13,7 +13,8 @@
             "env": {},
             "args": [
                 "--build",
-                "--run"
+                "--run",
+                "--version"
             ]
         },
         {

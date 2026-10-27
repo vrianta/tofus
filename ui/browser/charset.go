@@ -3,26 +3,26 @@ package browser
 type Charset string
 
 const (
-	def     Charset = ""
-	uTF8    Charset = "utf-8"
-	uTF16   Charset = "utf-16"
-	iSO8859 Charset = "iso-8859-1"
+	Def     Charset = ""
+	UTF8    Charset = "utf-8"
+	UTF16   Charset = "utf-16"
+	ISO8859 Charset = "iso-8859-1"
 )
 
-// var Charset = uTF8
+// var Charset = UTF8
 
 func (Charset) ToUTF8() Charset {
-	return uTF8
+	return UTF8
 }
 
 func (Charset) ToUTF16() Charset {
-	return uTF16
+	return UTF16
 }
 
 func (Charset) ToISO88591() Charset {
-	return iSO8859
+	return ISO8859
 }
 
 func SetChatset() Charset {
-	return def
+	return Def
 }
